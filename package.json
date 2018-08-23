@@ -1,0 +1,60 @@
+{
+  "name": "data-vis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/public/index.html",
+  "scripts": {
+    "test": "jest --watch",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "client": "webpack-dev-server",
+    "build-client": "webpack --mode development",
+    "build-webpack": "webpack --mode production",
+    "start": "set NODE_PATH=./lib && nodemon --exec babel-node lib/server.js",
+    "dev": "concurrently \"npm run client\" \"npm run start\"",
+    "deploy": "concurrently \"npm run build-webpack\" \"npm run start\""
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "env",
+      "stage-2"
+    ]
+  },
+  "author": "Thomas Lee",
+  "license": "ISC",
+  "dependencies": {
+    "ajv-keywords": "^3.2.0",
+    "body-parser": "^1.18.3",
+    "concurrently": "^3.6.1",
+    "d3": "^5.5.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "lodash.debounce": "^4.0.8",
+    "nodemon": "^1.18.3",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@storybook/react": "^3.4.10",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.5",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.5.0",
+    "react-test-renderer": "^16.4.2",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  }
+}
