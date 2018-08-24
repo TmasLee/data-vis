@@ -1,4 +1,5 @@
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const config = {
   resolve: {
@@ -7,7 +8,7 @@ const config = {
       path.resolve('./node_modules'),
     ]
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   target: 'web',
   entry: ['babel-polyfill', './src/dom.js'],
   output: {
@@ -15,6 +16,21 @@ const config = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          output: {
+            comments: false
+          },
+          minify: {},
+          compress: {
+            booleans: true
+          }
+        }
+      })
+    ]
+  },  
   module: {
     rules: [
       {test: /\.js$/, exclude: /node_modules/, use: 'babel-loader'}
