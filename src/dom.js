@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import store from './src/store';
-import Root from './src/Components/Root';
+import store from './store';
+import Root from './Components/Root';
 
 ReactDOM.render(
   <Root store = {store}/>,

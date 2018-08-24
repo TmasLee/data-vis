@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 
-import App from 'src/Components/Container/App';
+import App from '../Components/Container/App';
 
 const Root = ({store}) => (
   <Provider store={store}>
