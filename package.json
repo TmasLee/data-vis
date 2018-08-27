@@ -2,7 +2,7 @@
   "name": "data-vis",
   "version": "1.0.0",
   "description": "",
-  "main": "lib/public/index.html",
+  "main": "public/index.html",
   "scripts": {
     "test": "jest --watch",
     "storybook": "start-storybook -p 9001 -c .storybook",

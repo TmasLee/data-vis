@@ -1,9 +1,9 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-const FilterLink = ({filter, children}) => (
+const GraphType = ({type, children}) => (
   <NavLink
-    to={filter === 'SHOW_ALL' ? '/' : `/${filter}`}
+    to={type === 'SHOW_ALL' ? '/' : `/${type}`}
     activeStyle={{
       textDecoration: 'none',
       color: 'black'
@@ -13,4 +13,4 @@ const FilterLink = ({filter, children}) => (
   </NavLink>
 )
 
-export default FilterLink;
+export default GraphType;

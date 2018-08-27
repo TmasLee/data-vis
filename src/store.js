@@ -1,14 +1,14 @@
 import {applyMiddleware, createStore} from 'redux';
 import {createLogger} from 'redux-logger';
 import thunk from 'redux-thunk';
-// import rootReducer from 'Reducers/index';
+import rootReducer from './Reducers/index';
 
 let logger = createLogger({
   collapsed: true
 });
 
 let store = createStore(
-  // rootReducer,
+  rootReducer,
   applyMiddleware(thunk, logger)
 );
 

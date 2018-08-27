@@ -10,7 +10,7 @@ import App from '../Components/Container/App';
 const Root = ({store}) => (
   <Provider store={store}>
     <Router>
-      <Route path="/:filter?" component={App}/> 
+      <Route path="/:type?" component={App}/> 
     </Router>
   </Provider>
 );

@@ -1,11 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-import FilterHeader from '../Presentational/FilterHeader';
+import GraphTypeNav from '../Presentational/GraphTypeNav';
+import GraphContainer from '../Presentational/GraphContainer';
 
 const App = ({match: {params}}) =>{
   return (
     <div>
-      <FilterHeader />
+      <GraphContainer />
+      <GraphTypeNav />
     </div>
   )
 }
