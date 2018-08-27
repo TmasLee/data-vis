@@ -16,7 +16,7 @@ const config = {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  mode: production,
+  mode: 'production',
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
