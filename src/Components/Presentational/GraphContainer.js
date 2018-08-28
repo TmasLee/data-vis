@@ -5,7 +5,8 @@ const style = {
   
 }
 
-const GraphContainer = ({list: {items}}) => {
+// For reading from URL 
+const GraphContainer = ({type: {type}}) => {
   return (
     <div>
       

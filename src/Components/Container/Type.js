@@ -1,9 +1,9 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-const GraphType = ({type, children}) => (
+const Type = ({type, children}) => (
   <NavLink
-    to={type === 'SHOW_ALL' ? '/' : `/${type}`}
+    to={type === '' ? '/' : `/${type}`}
     activeStyle={{
       textDecoration: 'none',
       color: 'black'
@@ -13,4 +13,4 @@ const GraphType = ({type, children}) => (
   </NavLink>
 )
 
-export default GraphType;
+export default Type;

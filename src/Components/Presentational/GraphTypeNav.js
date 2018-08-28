@@ -1,24 +1,24 @@
 import React from 'react';
-import GraphType from '../Container/GraphType';
-import {VisibilityFilters} from '../../Actions';
+import Type from '../Container/Type';
+import {GraphType} from '../../Actions';
 
 // Change this into graph type selector
 
 const GraphTypeNav = () => (
   <p>
-    Show:
+    Display:
     {' '}
-    <GraphType filter={VisibilityFilters.SHOW_ALL}>
-      All
-    </GraphType>
+    <Type type={GraphType.BAR_GRAPH}>
+      Bar
+    </Type>
     {', '}
-    <GraphType filter={VisibilityFilters.SHOW_ACTIVE}>
-      Active
-    </GraphType>
+    <Type type={GraphType.LINE_GRAPH}>
+      Line
+    </Type>
     {', '}
-    <GraphType filter={VisibilityFilters.SHOW_COMPLETED}>
-      Completed
-    </GraphType>
+    <Type type={GraphType.PIE_CHART}>
+      Pie
+    </Type>
   </p>
 );
 

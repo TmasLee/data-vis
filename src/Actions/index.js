@@ -5,9 +5,9 @@ export const VisibilityFilters = {
 }
 
 export const GraphType = {
-  ph_bar: 'BAR_GRAPH',
-  ph_line: 'LINE_GRAPH',
+  BAR_GRAPH: 'BAR_GRAPH',
+  LINE_GRAPH: 'LINE_GRAPH',
   ph_comparative: '',
-  ph_pie: 'PIE_CHART',
+  PIE_CHART: 'PIE_CHART',
   ph_vr: ''
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import GraphTypeNav from '../Presentational/GraphTypeNav';
 import GraphContainer from '../Presentational/GraphContainer';
@@ -6,10 +7,14 @@ import GraphContainer from '../Presentational/GraphContainer';
 const App = ({match: {params}}) =>{
   return (
     <div>
-      <GraphContainer />
+      <GraphContainer type={params.type || 'BAR_GRAPH'}/>
       <GraphTypeNav />
     </div>
   )
 }
 
-export default App;
+export default connect((state,props)=>{
+  return {
+    
+  }
+})(App);
