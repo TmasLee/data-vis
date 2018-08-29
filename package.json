@@ -6,12 +6,12 @@
   "scripts": {
     "test": "jest --watch",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "client": "webpack-dev-server",
-    "build-client": "webpack --mode development",
-    "build-webpack": "webpack --mode production",
+    "dev-server": "webpack-dev-server --open",
+    "build-dev": "webpack --watch",
+    "build-production": "webpack -p",
     "start": "set NODE_PATH=./lib && nodemon --exec babel-node lib/devServer.js",
-    "dev": "concurrently \"npm run client\" \"npm run start\"",
-    "deploy": "concurrently \"npm run build-webpack\" \"npm run start\""
+    "dev": "concurrently \"npm run dev-server\" \"npm run start\"",
+    "deploy": "concurrently \"npm run build-production\" \"npm run start\""
   },
   "babel": {
     "presets": [
@@ -37,6 +37,7 @@
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "react-transition-group": "^2.4.0",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
