@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import app from './app';
-import graphTypeNav from './graphTypeNav';
+import graphTypeSelector from './graphTypeSelector';
 
 export default combineReducers({
   app: app,
-  graphTypeNav: graphTypeNav
+  graphTypeSelector: graphTypeSelector
 });

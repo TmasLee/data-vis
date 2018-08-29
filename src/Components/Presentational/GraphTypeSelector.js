@@ -2,9 +2,7 @@ import React from 'react';
 import Type from '../Container/Type';
 import {GraphType} from '../../Actions';
 
-// Change this into graph type selector
-
-const GraphTypeNav = () => (
+const GraphTypeSelector = () => (
   <p>
     Display:
     {' '}
@@ -19,7 +17,15 @@ const GraphTypeNav = () => (
     <Type type={GraphType.PIE_CHART}>
       Pie
     </Type>
+    {', '}
+    <Type>
+      ph_comparative
+    </Type>
+    {', '}
+    <Type>
+      ph_vr
+    </Type>
   </p>
 );
 
-export default GraphTypeNav;
+export default GraphTypeSelector;
