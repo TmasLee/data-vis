@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --watch",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "dev-server": "webpack-dev-server --open",
+    "dev-server": "webpack-dev-server --content-base ./public --open",
     "build-dev": "webpack --watch",
     "build-production": "webpack -p",
     "start": "set NODE_PATH=./lib && nodemon --exec babel-node lib/devServer.js",

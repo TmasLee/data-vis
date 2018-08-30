@@ -2,7 +2,7 @@ let defaultState = {
 
 }
 
-function graphTypeNav (state=defaultState, action){
+function graphTypeSelector (state=defaultState, action){
   switch(action.type){
 
 
@@ -11,4 +11,4 @@ function graphTypeNav (state=defaultState, action){
   }
 }
 
-export default graphTypeNav;
+export default graphTypeSelector;

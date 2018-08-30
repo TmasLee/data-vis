@@ -11,13 +11,14 @@ const config = {
   target: 'web',
   entry: ['babel-polyfill', './src/dom.js'],
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, './public'),
     publicPath: '/',
     filename: 'bundle.js'
   },
   mode: 'development',
   devServer: {
     historyApiFallback: true,
+    hot: true
   },
   module: {
     rules: [
