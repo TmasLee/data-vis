@@ -17,7 +17,7 @@ class App extends Component {
       <div>
         <GraphContainer 
           type={type || 'BAR_GRAPH'}
-          containerSize={containerSize}
+          {...containerSize}
           />
         <GraphTypeSelector />
       </div>

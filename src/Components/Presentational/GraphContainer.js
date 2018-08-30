@@ -4,15 +4,16 @@ import connect from 'react-redux';
 import Axes from './Axes';
 
 const style = {
-  
+  border: '1px solid black',
+
 }
 
 // For reading from URL 
-const GraphContainer = ({type: {type}}) => {
+const GraphContainer = props => {
+  const {x,y} = props;
   return (
-    // For now set width/height to 100%
     // Consider mobile + desktop 
-    <svg width='100%' height='100%'>
+    <svg width={x} height={y} style={style}>
       
     </svg>
   )
