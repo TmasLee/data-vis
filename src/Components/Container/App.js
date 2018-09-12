@@ -11,12 +11,12 @@ const style = {
 class App extends Component {
 
   render(){
-    const {type, containerSize} = this.props;
-
+    const {match, graphType, containerSize} = this.props;
+    console.log(match);
     return (
       <div>
         <GraphContainer 
-          type={type || 'BAR_GRAPH'}
+          type={match.params.type || 'BAR_GRAPH'}
           {...containerSize}
           />
         <GraphTypeSelector />
@@ -29,8 +29,8 @@ export default connect((state,props)=>{
   return {
     containerSize: state.app.containerSize,
     graphType: state.app.graphType,
-    showGridLines: state.app.showGridLines,
-    data: state.app.data,
+    // showGridLines: state.app.showGridLines,
+    // data: state.app.data,
 
   }
 })(App);

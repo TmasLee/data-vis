@@ -1,22 +1,33 @@
 import React from 'react';
-import connect from 'react-redux';
 
-import Axes from './Axes';
+import BarGraph from '../Container/BarGraph';
+import LineGraph from '../Container/LineGraph';
+import PieChart from '../Container/PieChart';
 
 const style = {
   border: '1px solid black',
 
 }
 
-// For reading from URL 
-const GraphContainer = props => {
-  const {x,y} = props;
-  return (
-    // Consider mobile + desktop 
-    <svg width={x} height={y} style={style}>
-      
-    </svg>
-  )
+/*
+ * This component reads what type of graph to display
+ * from the URL and renders the matching graph.
+ */
+const GraphContainer = ({x,y,type}) => {
+  if (type === 'BAR_GRAPH'){
+    return (
+      <BarGraph x={x} y={y}/>
+    )
+  } else if (type === 'LINE_GRAPH'){
+    return (
+      <LineGraph x={x} y={y}/>
+    )
+  } 
+  else {
+    return (
+      <PieChart />
+    )
+  }
 }
 
 export default GraphContainer;
