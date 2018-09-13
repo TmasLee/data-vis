@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {select} from 'd3';
-import Axes from '../Presentational/Axes';
+import Axes from '../../Presentational/Axes';
 
 const style = {
   border: '1px solid black'
@@ -16,11 +16,12 @@ class BarGraph extends Component {
   }
 
   componentDidUpdate(){
-
+    // if (this.)
   }
 
   drawGraph = () => {
-    const svg = select(this.svgRef)
+    const svg = select(this.svgRef);
+    
   }
 
 
@@ -28,12 +29,11 @@ class BarGraph extends Component {
   render(){
     const {x, y} = this.props;
     return (
-      <svg 
-        width={x} 
-        height={y} 
+      <svg width={x} height={y} 
         style={style}
-        ref={ref=>(this.svgRef = ref)} 
-      />
+        ref={ref=>(this.svgRef = ref)}>
+        <Axes width={x} height={y}/>
+      </svg>
     )
   }
 }

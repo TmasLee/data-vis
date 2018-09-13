@@ -1,8 +1,8 @@
 import React from 'react';
 
-import BarGraph from '../Container/BarGraph';
-import LineGraph from '../Container/LineGraph';
-import PieChart from '../Container/PieChart';
+import BarGraph from '../Container/BarGraph/BarGraph';
+import LineGraph from '../Container/LineGraph/LineGraph';
+import PieChart from '../Container/PieChart/PieChart';
 
 const style = {
   border: '1px solid black',

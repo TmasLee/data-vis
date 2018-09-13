@@ -15,9 +15,15 @@ const config = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  performance: {
+    hints: false
+  },
   mode: 'development',
   devServer: {
     historyApiFallback: true,
+    publicPath: '/',
+    compress: true,
+    port: 8080,
     hot: true
   },
   module: {
