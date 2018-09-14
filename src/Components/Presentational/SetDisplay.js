@@ -1,7 +1,5 @@
 import React from 'react';
 
-const SetDisplay = () => {
-
-}
+const SetDisplay = () => {};
 
 export default SetDisplay;

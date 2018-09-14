@@ -1,42 +1,47 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-  resolve: {
-    modules: [
-      path.resolve('./lib'),
-      path.resolve('./node_modules'),
-    ]
-  },
-  devtool: 'source-map',
-  target: 'web',
-  entry: ['babel-polyfill', './src/dom.js'],
-  output: {
-    path: path.resolve(__dirname, 'public'),
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
-  mode: 'production',
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          output: {
-            comments: false
-          },
-          minify: {},
-          compress: {
-            booleans: true
-          }
-        }
-      })
-    ]
-  },  
-  module: {
-    rules: [
-      {test: /\.js$/, exclude: /node_modules/, use: 'babel-loader'}
-    ]
-  }
+	entry: ['./src/dom.js'],
+	output: {
+		path: path.resolve(__dirname, './public'),
+		filename: 'bundle.js'
+	},
+	resolve: {
+		modules: [path.resolve('./lib'), path.resolve('./node_modules')]
+	},
+	mode: 'development',
+	performance: {
+		hints: false
+	},
+	devServer: {
+		proxy: {
+			'/api': 'http://localhost:8000'
+		},
+		historyApiFallback: true,
+		publicPath: '/',
+		compress: true,
+		contentBase: path.resolve(__dirname, 'public'),
+		inline: true,
+		port: 8080,
+		open: true
+	},
+	module: {
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader'
+				}
+			}
+		]
+	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: './public/index.html'
+		})
+	]
 };
 
 module.exports = config;
