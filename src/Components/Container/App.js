@@ -4,19 +4,32 @@ import { connect } from 'react-redux';
 import GraphTypeSelector from '../Presentational/GraphTypeSelector';
 import GraphContainer from '../Presentational/GraphContainer';
 
-const style = {};
+const style = {
+	app: {
+		display: 'flex',
+		// margin: 'auto',
+		height: '100%',
+		alignItems: 'center',
+		flexDirection: 'column'
+	},
+	container: {},
+	selector: {
+		textAlign: 'center'
+	}
+};
 
 class App extends Component {
 	render() {
 		const { match, graphType, containerSize } = this.props;
 		console.log(match);
 		return (
-			<div>
+			<div style={style.app}>
 				<GraphContainer
+					style={style.container}
 					type={match.params.type || 'BAR_GRAPH'}
 					{...containerSize}
 				/>
-				<GraphTypeSelector />
+				<GraphTypeSelector style={style.selector} />
 			</div>
 		);
 	}

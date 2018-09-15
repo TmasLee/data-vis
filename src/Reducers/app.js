@@ -1,7 +1,7 @@
 let defaultState = {
 	containerSize: {
-		x: 500,
-		y: 500
+		x: 700,
+		y: 700
 	},
 	graphType: 'BAR_GRAPH',
 	showGridLines: true,

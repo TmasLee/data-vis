@@ -4,10 +4,6 @@ import BarGraph from '../Container/BarGraph/BarGraph';
 import LineGraph from '../Container/LineGraph/LineGraph';
 import PieChart from '../Container/PieChart/PieChart';
 
-const style = {
-	border: '1px solid black'
-};
-
 /*
  * This component reads what type of graph to display
  * from the URL and renders the matching graph.

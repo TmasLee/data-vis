@@ -1,5 +1,9 @@
 import React from 'react';
 
-const SetDisplay = () => {};
+/**
+ * Show the data of the selected section.
+ */
+
+const SetDisplay = ({ data }) => {};
 
 export default SetDisplay;
