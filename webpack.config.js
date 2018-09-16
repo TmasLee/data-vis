@@ -11,12 +11,12 @@ const config = {
 		modules: [path.resolve('./lib'), path.resolve('./node_modules')]
 	},
 	mode: 'development',
-	performance: {
-		hints: false
-	},
 	devServer: {
 		proxy: {
-			'/api': 'http://localhost:8000'
+			'/data': {
+				target: 'http://localhost:8000',
+				secure: false
+			}
 		},
 		historyApiFallback: true,
 		publicPath: '/',

@@ -20,7 +20,6 @@ class Bar extends Component {
 
 	render() {
 		const { x, width, color } = this.props;
-		// console.log(x);
 		return (
 			<rect
 				x={x}

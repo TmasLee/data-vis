@@ -14,7 +14,8 @@ class BarGraph extends Component {
 	}
 
 	componentDidMount() {
-		this.drawAxes();
+		this.drawXAxis();
+		this.drawYAxis(true);
 	}
 
 	componentDidUpdate() {}
@@ -53,11 +54,6 @@ class BarGraph extends Component {
 			// 	.attr('transform', 'translate(0,' + (this.props.x + this.margin) + ')')
 			// 	.call(axisLeft(this.getYScale()));
 		}
-	};
-
-	drawAxes = () => {
-		this.drawXAxis();
-		this.drawYAxis(true);
 	};
 
 	render() {

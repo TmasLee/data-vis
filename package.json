@@ -6,10 +6,10 @@
 	"scripts": {
 		"test": "jest --watch",
 		"storybook": "start-storybook -p 9001 -c .storybook",
-		"client": "webpack-dev-server",
+		"client": "webpack-dev-server --info false",
 		"build-production": "webpack -p",
 		"start": "set NODE_PATH=./lib && nodemon --exec babel-node lib/devServer.js",
-		"dev": "concurrently \"npm run dev-server\" \"npm run start\"",
+		"dev": "concurrently \"npm run client\" \"npm run start\"",
 		"deploy": "concurrently \"npm run build-production\" \"npm run start\""
 	},
 	"babel": {
@@ -52,10 +52,12 @@
 		"babel-preset-stage-2": "^6.24.1",
 		"html-loader": "^0.5.5",
 		"html-webpack-plugin": "^3.2.0",
+		"http-proxy-middleware": "^0.19.0",
 		"jest": "^23.5.0",
 		"react-test-renderer": "^16.4.2",
 		"webpack": "^4.16.5",
 		"webpack-cli": "^3.1.0",
+		"webpack-dev-middleware": "^3.3.0",
 		"webpack-dev-server": "^3.1.5"
 	}
 }
