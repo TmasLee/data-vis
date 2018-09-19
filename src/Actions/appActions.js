@@ -4,14 +4,13 @@ export function fetchData() {
 	return dispatch => {
 		fetch(`${url}`, { method: 'GET' })
 			.then(res => {
-				console.log(res);
 				return res.json();
 			})
 			.then(res => {
-				console.log(res);
+				// console.log(res);
 				dispatch({
 					type: 'FETCH_DATA',
-					data: res
+					data: res.data
 				});
 			})
 			.catch(err => {

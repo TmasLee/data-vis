@@ -23,6 +23,12 @@ class App extends Component {
 		this.props.dispatch(appActions.fetchData());
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps !== this.props) {
+			// console.log('wtf');
+		}
+	}
+
 	render() {
 		const { match, graphType, containerSize, data } = this.props;
 		if (!this.props.data) {

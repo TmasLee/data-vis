@@ -17,7 +17,12 @@ class BarGraph extends Component {
 		this.drawYAxis(true);
 	}
 
-	componentDidUpdate() {}
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.data !== this.props.data) {
+			console.log('s');
+			this.setState({});
+		}
+	}
 
 	getXScale = () => {
 		const { data } = this.props;
@@ -61,7 +66,7 @@ class BarGraph extends Component {
 		const { x, y, data } = this.props;
 		const xScale = this.getXScale();
 		const yScale = this.getYScale();
-
+		console.log(data);
 		return (
 			<svg width={x} height={y}>
 				<g>

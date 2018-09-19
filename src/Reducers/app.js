@@ -12,10 +12,13 @@ function app(state = defaultState, action) {
 	switch (action.type) {
 		case 'FETCH_DATA':
 			return {
-				data: action.data,
+				...state,
+				data: action.data
+			};
+		case 'SOMETHING':
+			return {
 				...state
 			};
-
 		default:
 			return state;
 	}
