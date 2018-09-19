@@ -12,12 +12,6 @@ const config = {
 	},
 	mode: 'development',
 	devServer: {
-		proxy: {
-			'/data': {
-				target: 'http://localhost:8000',
-				secure: false
-			}
-		},
 		historyApiFallback: true,
 		publicPath: '/',
 		compress: true,

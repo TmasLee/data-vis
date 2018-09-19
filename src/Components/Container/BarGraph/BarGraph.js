@@ -9,7 +9,6 @@ import Bar from './Bar';
 class BarGraph extends Component {
 	constructor(props) {
 		super(props);
-
 		this.margin = 25;
 	}
 
@@ -21,16 +20,18 @@ class BarGraph extends Component {
 	componentDidUpdate() {}
 
 	getXScale = () => {
+		const { data } = this.props;
 		this.xScale = scaleBand()
-			.domain(sampleData.map(d => d.name))
+			.domain(data.map(d => d.name))
 			.rangeRound([0, this.props.x - this.margin])
 			.padding(0.1);
 		return this.xScale;
 	};
 
 	getYScale = () => {
+		const { data } = this.props;
 		this.yScale = scaleLinear()
-			.domain([0, Math.max(...sampleData.map(d => d.sameness))])
+			.domain([0, Math.max(...data.map(d => d.sameness))])
 			.rangeRound([this.props.y - this.margin, this.margin]);
 		return this.yScale;
 	};
@@ -57,7 +58,7 @@ class BarGraph extends Component {
 	};
 
 	render() {
-		const { x, y } = this.props;
+		const { x, y, data } = this.props;
 		const xScale = this.getXScale();
 		const yScale = this.getYScale();
 
@@ -66,7 +67,7 @@ class BarGraph extends Component {
 				<g>
 					<g ref={ref => (this.xAxisRef = ref)} />
 					<g ref={ref => (this.yAxisRef = ref)} />
-					{sampleData.map((d, i) => (
+					{data.map((d, i) => (
 						<Bar
 							key={i}
 							x={xScale(d.name) + this.margin}
@@ -83,31 +84,3 @@ class BarGraph extends Component {
 }
 
 export default BarGraph;
-
-let sampleData = [
-	{
-		name: 'Peter',
-		sameness: 85,
-		color: 'green'
-	},
-	{
-		name: 'Antonio',
-		sameness: 65,
-		color: 'orange'
-	},
-	{
-		name: 'Thomas',
-		sameness: 70,
-		color: 'red'
-	},
-	{
-		name: 'He who shall not be named',
-		sameness: 100,
-		color: 'green'
-	},
-	{
-		name: 'Umma',
-		sameness: 20,
-		color: 'purple'
-	}
-];

@@ -8,9 +8,9 @@ import PieChart from '../Container/PieChart/PieChart';
  * This component reads what type of graph to display
  * from the URL and renders the matching graph.
  */
-const GraphContainer = ({ x, y, type }) => {
+const GraphContainer = ({ x, y, type, data }) => {
 	if (type === 'BAR_GRAPH') {
-		return <BarGraph x={x} y={y} />;
+		return <BarGraph x={x} y={y} data={data} />;
 	} else if (type === 'LINE_GRAPH') {
 		return <LineGraph x={x} y={y} />;
 	} else {

@@ -5,13 +5,14 @@ let defaultState = {
 	},
 	graphType: 'BAR_GRAPH',
 	showGridLines: true,
-	data: null
+	data: []
 };
 
 function app(state = defaultState, action) {
 	switch (action.type) {
-		case '':
+		case 'FETCH_DATA':
 			return {
+				data: action.data,
 				...state
 			};
 
