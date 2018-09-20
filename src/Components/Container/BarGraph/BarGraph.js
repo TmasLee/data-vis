@@ -10,6 +10,7 @@ class BarGraph extends Component {
 	constructor(props) {
 		super(props);
 		this.margin = 25;
+		this.t = d3Transition('bargraph').duration(750);
 	}
 
 	componentDidMount() {
@@ -67,6 +68,7 @@ class BarGraph extends Component {
 		const { x, y, data } = this.props;
 		const xScale = this.getXScale();
 		const yScale = this.getYScale();
+		this.t = d3Transition('bargraph').duration(750);
 
 		return (
 			<svg width={x} height={y}>
