@@ -3,8 +3,8 @@ let defaultState = {
 		x: 700,
 		y: 700
 	},
+	//Set default as nothing, default is home page
 	graphType: 'BAR_GRAPH',
-	showGridLines: true,
 	data: []
 };
 
@@ -15,7 +15,11 @@ function app(state = defaultState, action) {
 				...state,
 				data: action.data
 			};
-		case 'SOMETHING':
+		case 'RANDOMIZE_DATA':
+			return {
+				...state
+			};
+		case '':
 			return {
 				...state
 			};

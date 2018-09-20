@@ -17,12 +17,7 @@ class BarGraph extends Component {
 		this.drawYAxis(true);
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		if (prevProps.data !== this.props.data) {
-			console.log('s');
-			this.setState({});
-		}
-	}
+	componentDidUpdate(prevProps, prevState) {}
 
 	getXScale = () => {
 		const { data } = this.props;

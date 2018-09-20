@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import GraphTypeSelector from '../Presentational/GraphTypeSelector';
 import GraphContainer from '../Presentational/GraphContainer';
 import * as appActions from '../../Actions/appActions';
+import Menu from '../Presentational/Menu';
 
 const style = {
 	app: {
@@ -19,15 +20,25 @@ const style = {
 };
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.menuItems = [
+			{
+				name: 'Randomize Data!',
+				func: this.randomizeData
+			}
+		];
+	}
+
 	componentDidMount() {
 		this.props.dispatch(appActions.fetchData());
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		if (prevProps !== this.props) {
-			// console.log('wtf');
-		}
-	}
+	componentDidUpdate(prevProps, prevState) {}
+
+	randomizeData = () => {
+		this.props.dispatch(appActions.randomizeAndFetch());
+	};
 
 	render() {
 		const { match, graphType, containerSize, data } = this.props;
@@ -44,6 +55,7 @@ class App extends Component {
 						{...containerSize}
 					/>
 					<GraphTypeSelector style={style.selector} />
+					<Menu items={this.menuItems} />
 				</div>
 			);
 		}
@@ -54,7 +66,6 @@ export default connect((state, props) => {
 	return {
 		containerSize: state.app.containerSize,
 		graphType: state.app.graphType,
-		// showGridLines: state.app.showGridLines,
 		data: state.app.data
 	};
 })(App);

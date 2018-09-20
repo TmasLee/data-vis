@@ -7,7 +7,6 @@ export function fetchData() {
 				return res.json();
 			})
 			.then(res => {
-				// console.log(res);
 				dispatch({
 					type: 'FETCH_DATA',
 					data: res.data
@@ -21,8 +20,26 @@ export function fetchData() {
 
 export function randomizeData() {
 	return dispatch => {
-		fetch(`${url}` + '/randomize').then(res => {
-			res.json();
-		});
+		return fetch(`${url}randomize`, { method: 'PUT' })
+			.then(res => {
+				dispatch({
+					type: 'RANDOMIZE_DATA'
+				});
+			})
+			.catch(err => {
+				console.error(err);
+			});
+	};
+}
+
+export function randomizeAndFetch() {
+	return dispatch => {
+		dispatch(randomizeData())
+			.then(res => {
+				dispatch(fetchData());
+			})
+			.catch(err => {
+				console.error(err);
+			});
 	};
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { select } from 'd3';
+import { Transition, transition as d3Transition } from 'd3-transition';
 
 class Bar extends Component {
 	constructor(props) {
