@@ -11,7 +11,11 @@ class Bar extends Component {
 		this.updateHeight();
 	}
 
-	componentDidUpdate() {}
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps !== this.props) {
+			this.updateHeight();
+		}
+	}
 
 	updateHeight = () => {
 		select(this.rectRef)

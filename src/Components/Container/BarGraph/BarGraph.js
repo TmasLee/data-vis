@@ -17,10 +17,16 @@ class BarGraph extends Component {
 		this.drawYAxis(true);
 	}
 
-	componentDidUpdate(prevProps, prevState) {}
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.data !== this.props.data) {
+			this.drawXAxis();
+			this.drawYAxis(true);
+		}
+	}
 
 	getXScale = () => {
 		const { data } = this.props;
+		console.log(data);
 		this.xScale = scaleBand()
 			.domain(data.map(d => d.name))
 			.rangeRound([0, this.props.x - this.margin])
@@ -61,7 +67,7 @@ class BarGraph extends Component {
 		const { x, y, data } = this.props;
 		const xScale = this.getXScale();
 		const yScale = this.getYScale();
-		console.log(data);
+
 		return (
 			<svg width={x} height={y}>
 				<g>
