@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { axisLeft, axisBottom } from 'd3-axis';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
-import { Transition, transition as d3Transition } from 'd3-transition';
 
 import Bar from './Bar';
 
@@ -10,7 +9,6 @@ class BarGraph extends Component {
 	constructor(props) {
 		super(props);
 		this.margin = 25;
-		this.t = d3Transition('bargraph').duration(750);
 	}
 
 	componentDidMount() {
@@ -21,7 +19,7 @@ class BarGraph extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.data !== this.props.data) {
 			this.drawXAxis();
-			this.drawYAxis(true);
+			this.drawYAxis();
 		}
 	}
 
@@ -52,23 +50,16 @@ class BarGraph extends Component {
 			.call(axisBottom(this.getXScale()));
 	};
 
-	drawYAxis = initialDraw => {
-		if (initialDraw) {
-			select(this.yAxisRef)
-				.attr('transform', 'translate(' + this.margin + ',0)')
-				.call(axisLeft(this.getYScale()));
-		} else {
-			// select(this.yAxisRef)
-			// 	.attr('transform', 'translate(0,' + (this.props.x + this.margin) + ')')
-			// 	.call(axisLeft(this.getYScale()));
-		}
+	drawYAxis = () => {
+		select(this.yAxisRef)
+			.attr('transform', 'translate(' + this.margin + ',0)')
+			.call(axisLeft(this.getYScale()));
 	};
 
 	render() {
 		const { x, y, data } = this.props;
 		const xScale = this.getXScale();
 		const yScale = this.getYScale();
-		this.t = d3Transition('bargraph').duration(750);
 
 		return (
 			<svg width={x} height={y}>
