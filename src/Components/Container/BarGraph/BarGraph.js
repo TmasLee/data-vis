@@ -4,11 +4,17 @@ import { scaleBand, scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
 
 import Bar from './Bar';
+import Tooltip from '../../Presentational/Tooltip';
 
 class BarGraph extends Component {
 	constructor(props) {
 		super(props);
-		this.margin = 25;
+		this.state = {
+			visibility: 'hidden',
+			margin: 25,
+			toolTipX: 0,
+			toolTipY: 0
+		};
 	}
 
 	componentDidMount() {
@@ -28,7 +34,7 @@ class BarGraph extends Component {
 		console.log(data);
 		this.xScale = scaleBand()
 			.domain(data.map(d => d.name))
-			.rangeRound([0, this.props.x - this.margin])
+			.rangeRound([0, this.props.x - this.state.margin])
 			.padding(0.1);
 		return this.xScale;
 	};
@@ -36,8 +42,8 @@ class BarGraph extends Component {
 	getYScale = () => {
 		const { data } = this.props;
 		this.yScale = scaleLinear()
-			.domain([0, Math.max(...data.map(d => d.sameness))])
-			.rangeRound([this.props.y - this.margin, this.margin]);
+			.domain([0, 110])
+			.rangeRound([this.props.y - this.state.margin, this.state.margin]);
 		return this.yScale;
 	};
 
@@ -45,15 +51,30 @@ class BarGraph extends Component {
 		select(this.xAxisRef)
 			.attr(
 				'transform',
-				'translate(' + this.margin + ',' + (this.props.y - this.margin) + ')'
+				'translate(' +
+					this.state.margin +
+					',' +
+					(this.props.y - this.state.margin) +
+					')'
 			)
 			.call(axisBottom(this.getXScale()));
 	};
 
 	drawYAxis = () => {
 		select(this.yAxisRef)
-			.attr('transform', 'translate(' + this.margin + ',0)')
+			.attr('transform', 'translate(' + this.state.margin + ',0)')
 			.call(axisLeft(this.getYScale()));
+	};
+
+	toggleToolTip = (x, y) => {
+		this.setState({
+			toolTipX: x,
+			toolTipY: y,
+			visibility: 'visible'
+		});
+	};
+	toggleToolTipOff = () => {
+		this.setState({ visibility: 'hidden' });
 	};
 
 	render() {
@@ -69,13 +90,20 @@ class BarGraph extends Component {
 					{data.map((d, i) => (
 						<Bar
 							key={i}
-							x={xScale(d.name) + this.margin}
+							x={xScale(d.name) + this.state.margin}
 							y={yScale(d.sameness)}
 							width={xScale.bandwidth()}
-							height={y - yScale(d.sameness) - this.margin}
+							height={y - yScale(d.sameness) - this.state.margin}
 							color={d.color}
+							toggleToolTip={this.toggleToolTip}
+							toggleToolTipOff={this.toggleToolTipOff}
 						/>
 					))}
+					<Tooltip
+						x={this.state.toolTipX}
+						y={this.state.toolTipY}
+						visibility={this.state.visibility}
+					/>
 				</g>
 			</svg>
 		);

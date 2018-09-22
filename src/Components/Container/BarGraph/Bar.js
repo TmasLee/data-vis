@@ -6,7 +6,6 @@ class Bar extends Component {
 	constructor(props) {
 		super(props);
 
-		this.toolTipVisibility = 'hidden';
 		this.transition = d3Transition()
 			.duration(1000)
 			.ease(easeLinear);
@@ -14,28 +13,20 @@ class Bar extends Component {
 
 	componentDidMount() {
 		this.updateBar(true);
-		this.toggleToolTip();
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		if (prevProps !== this.props) {
+		if (
+			prevProps.height !== this.props.height ||
+			prevProps.y !== this.props.y
+		) {
 			this.updateBar(false);
 		}
 	}
 
-	toggleToolTip = e => {
-		e.preventDefault();
-		select(this.toolTipRef)
-			.append('div')
-			.style('position', 'absolute')
-			.style('z-index', '10')
-			.style('visibility', this.toolTipVisibility)
-			.style('background', '#000')
-			.text('xD');
-	};
-
 	updateBar = initialRender => {
 		const { y, height, color } = this.props;
+
 		if (initialRender) {
 			select(this.barRef)
 				.attr('y', y)
@@ -50,20 +41,28 @@ class Bar extends Component {
 		}
 	};
 
+	change = () => {
+		select(this.barRef).style('fill', 'orange');
+	};
+
 	render() {
-		const { x, width } = this.props;
+		const { x, y, width, toggleToolTip, toggleToolTipOff } = this.props;
 		return (
-			<g ref={ref => this.totalRef}>
-				<rect
-					x={x}
-					width={width}
-					ref={ref => (this.barRef = ref)}
-					onMouseOver={e => {
-						this.showToolTip(e);
-					}}
-				/>
-				<g ref={ref => (this.toolTipRef = ref)} />
-			</g>
+			<rect
+				ref={ref => (this.barRef = ref)}
+				x={x}
+				width={width}
+				onMouseOver={e => {
+					e.preventDefault();
+					// console.log('keke');
+					toggleToolTip(x, y);
+				}}
+				onMouseOut={e => {
+					e.preventDefault();
+					// console.log('fefe');
+					toggleToolTipOff();
+				}}
+			/>
 		);
 	}
 }
