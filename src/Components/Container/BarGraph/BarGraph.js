@@ -28,6 +28,12 @@ class BarGraph extends Component {
 			this.drawXAxis();
 			this.drawYAxis();
 		}
+		if (prevProps.x !== this.props.x || prevProps.y !== this.props.y) {
+			this.getXScale();
+			this.getYScale();
+			this.drawXAxis();
+			this.drawYAxis();
+		}
 	}
 
 	getXScale = () => {

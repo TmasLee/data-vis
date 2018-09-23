@@ -6,12 +6,20 @@ import GraphContainer from '../Presentational/GraphContainer';
 import * as appActions from '../../Actions/appActions';
 import Menu from '../Presentational/Menu';
 
+/**
+ * To Add:
+ * -	Fix inital load url: '/'--> home page
+ * -	Add data column
+ * -	Add data file?
+ */
+
 const style = {
 	app: {
 		display: 'flex',
-		height: '100%',
+		height: '100vh',
 		alignItems: 'center',
-		flexDirection: 'column'
+		flexDirection: 'column',
+		justifyContent: 'center'
 	},
 	container: {},
 	selector: {
@@ -31,17 +39,20 @@ class App extends Component {
 	}
 
 	componentDidMount() {
+		window.addEventListener('resize', this.handleResize);
 		this.props.dispatch(appActions.fetchData());
 	}
 
-	componentDidUpdate(prevProps, prevState) {}
+	handleResize = e => {
+		this.props.dispatch(appActions.resizeWindow());
+	};
 
 	randomizeData = () => {
 		this.props.dispatch(appActions.randomizeAndFetch());
 	};
 
 	render() {
-		const { match, graphType, containerSize, data } = this.props;
+		const { match, graphType, windowSize, data } = this.props;
 		if (!this.props.data) {
 			return null;
 		} else {
@@ -52,7 +63,7 @@ class App extends Component {
 						style={style.container}
 						type={match.params.type || 'BAR_GRAPH'}
 						data={data}
-						{...containerSize}
+						{...windowSize}
 					/>
 					<GraphTypeSelector style={style.selector} />
 					<Menu items={this.menuItems} />
@@ -64,7 +75,7 @@ class App extends Component {
 
 export default connect((state, props) => {
 	return {
-		containerSize: state.app.containerSize,
+		windowSize: state.app.windowSize,
 		graphType: state.app.graphType,
 		data: state.app.data
 	};

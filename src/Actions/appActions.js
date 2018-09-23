@@ -43,3 +43,13 @@ export function randomizeAndFetch() {
 			});
 	};
 }
+
+export function resizeWindow() {
+	return {
+		type: 'RESIZE_WINDOW_DIMENSIONS',
+		windowSize: {
+			windowWidth: window.innerWidth,
+			windowHeight: window.innerHeight
+		}
+	};
+}

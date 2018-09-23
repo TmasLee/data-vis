@@ -1,7 +1,7 @@
 let defaultState = {
-	containerSize: {
-		x: 700,
-		y: 700
+	windowSize: {
+		windowWidth: window.innerWidth,
+		windowHeight: window.innerHeight
 	},
 	//Set default as nothing, default is home page
 	graphType: 'BAR_GRAPH',
@@ -19,9 +19,10 @@ function app(state = defaultState, action) {
 			return {
 				...state
 			};
-		case '':
+		case 'RESIZE_WINDOW_DIMENSIONS':
 			return {
-				...state
+				...state,
+				windowSize: action.windowSize
 			};
 		default:
 			return state;

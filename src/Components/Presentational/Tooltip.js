@@ -3,7 +3,9 @@ import { select } from 'd3';
 
 /**
  * To-Do:
- * - 	Change text to show data
+ * -	Make tooltip rect/triangle/text a separate component.
+ * 			- Decouple it so I can reuse for line graph.
+ * -	Fix hard-coded variables. Make dynamic
  */
 class Tooltip extends Component {
 	constructor(props) {
