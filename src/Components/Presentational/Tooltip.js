@@ -3,7 +3,7 @@ import { select } from 'd3';
 
 /**
  * To-Do:
- * -	Fix hard-coded variables. Make dynamic
+ * - 	Change text to show data
  */
 class Tooltip extends Component {
 	constructor(props) {
@@ -26,21 +26,24 @@ class Tooltip extends Component {
 	}
 
 	updatePosition = () => {
-		const { x, y, visibility } = this.props;
+		const { x, y, visibility, data } = this.props;
 
 		select(this.toolTipRect)
 			.attr('x', x + this.centerOffSet)
 			.attr('y', y - this.height - this.heightOffSet)
+			.attr('rx', 7)
+			.attr('ry', 7)
 			.attr('visibility', `${visibility}`)
-			.style('fill', 'rgb(145,150,160)');
+			.style('fill', 'rgb(45,45,45)');
 
 		select(this.toolTipText)
 			.attr('x', x + this.halfBarWidth)
 			.attr('y', y - this.textCenter)
 			.attr('text-anchor', 'middle')
 			.style('font-size', 12)
+			.style('fill', 'white')
 			.text(function(d) {
-				return 'xD';
+				return `Value: ${data}`;
 			})
 			.attr('visibility', `${visibility}`);
 
@@ -54,7 +57,7 @@ class Tooltip extends Component {
 					this.halfTriangleWidth},${y - this.heightOffSet}`
 			)
 			.attr('visibility', `${visibility}`)
-			.style('fill', 'rgb(145,150,160');
+			.style('fill', 'rgb(45,45,45');
 	};
 
 	render() {

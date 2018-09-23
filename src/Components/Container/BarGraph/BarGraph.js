@@ -10,10 +10,11 @@ class BarGraph extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			visibility: 'hidden',
 			margin: 25,
+			visibility: 'hidden',
 			toolTipX: 0,
-			toolTipY: 0
+			toolTipY: 0,
+			toolTipText: ''
 		};
 	}
 
@@ -31,7 +32,6 @@ class BarGraph extends Component {
 
 	getXScale = () => {
 		const { data } = this.props;
-		console.log(data);
 		this.xScale = scaleBand()
 			.domain(data.map(d => d.name))
 			.rangeRound([0, this.props.x - this.state.margin])
@@ -40,7 +40,6 @@ class BarGraph extends Component {
 	};
 
 	getYScale = () => {
-		const { data } = this.props;
 		this.yScale = scaleLinear()
 			.domain([0, 110])
 			.rangeRound([this.props.y - this.state.margin, this.state.margin]);
@@ -66,11 +65,12 @@ class BarGraph extends Component {
 			.call(axisLeft(this.getYScale()));
 	};
 
-	toggleToolTip = (x, y) => {
+	toggleToolTip = (x, y, data) => {
 		this.setState({
 			toolTipX: x,
 			toolTipY: y,
-			visibility: 'visible'
+			visibility: 'visible',
+			toolTipText: data
 		});
 	};
 	toggleToolTipOff = () => {
@@ -79,6 +79,7 @@ class BarGraph extends Component {
 
 	render() {
 		const { x, y, data } = this.props;
+		const { margin, toolTipX, toolTipY, visibility, toolTipText } = this.state;
 		const xScale = this.getXScale();
 		const yScale = this.getYScale();
 
@@ -90,19 +91,21 @@ class BarGraph extends Component {
 					{data.map((d, i) => (
 						<Bar
 							key={i}
-							x={xScale(d.name) + this.state.margin}
+							x={xScale(d.name) + margin}
 							y={yScale(d.sameness)}
 							width={xScale.bandwidth()}
-							height={y - yScale(d.sameness) - this.state.margin}
+							height={y - yScale(d.sameness) - margin}
 							color={d.color}
+							rawData={d.sameness}
 							toggleToolTip={this.toggleToolTip}
 							toggleToolTipOff={this.toggleToolTipOff}
 						/>
 					))}
 					<Tooltip
-						x={this.state.toolTipX}
-						y={this.state.toolTipY}
-						visibility={this.state.visibility}
+						x={toolTipX}
+						y={toolTipY}
+						visibility={visibility}
+						data={toolTipText}
 					/>
 				</g>
 			</svg>
