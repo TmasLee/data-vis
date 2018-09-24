@@ -5,7 +5,8 @@ import { GraphType } from '../../Actions';
 
 const GraphTypeSelector = () => (
 	<p>
-		Display: <Type type={GraphType.BAR_GRAPH}>Bar</Type>
+		Display:
+		<Type type={GraphType.BAR_GRAPH}>Bar</Type>
 		{', '}
 		<Type type={GraphType.LINE_GRAPH}>Line</Type>
 		{', '}

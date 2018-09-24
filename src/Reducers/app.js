@@ -3,7 +3,6 @@ let defaultState = {
 		windowWidth: window.innerWidth,
 		windowHeight: window.innerHeight
 	},
-	//Set default as nothing, default is home page
 	graphType: 'BAR_GRAPH',
 	data: []
 };

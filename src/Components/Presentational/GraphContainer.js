@@ -11,12 +11,12 @@ import PieChart from '../Container/PieChart/PieChart';
 const GraphContainer = ({ windowWidth, windowHeight, type, data }) => {
 	if (type === 'BAR_GRAPH') {
 		return (
-			<BarGraph x={windowWidth * 0.7} y={windowHeight * 0.7} data={data} />
+			<BarGraph x={windowWidth * 0.7} y={windowHeight * 0.6} data={data} />
 		);
 	} else if (type === 'LINE_GRAPH') {
-		return <LineGraph x={x} y={y} />;
+		return <LineGraph x={windowWidth} y={windowHeight} />;
 	} else {
-		return <PieChart />;
+		return <PieChart x={windowWidth} y={windowHeight} />;
 	}
 };
 

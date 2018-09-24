@@ -4,22 +4,15 @@ import { connect } from 'react-redux';
 import GraphTypeSelector from '../Presentational/GraphTypeSelector';
 import GraphContainer from '../Presentational/GraphContainer';
 import * as appActions from '../../Actions/appActions';
+import Info from '../Presentational/Info';
 import Menu from '../Presentational/Menu';
-
-/**
- * To Add:
- * -	Fix inital load url: '/'--> home page
- * -	Add data column
- * -	Add data file?
- */
 
 const style = {
 	app: {
 		display: 'flex',
 		height: '100vh',
 		alignItems: 'center',
-		flexDirection: 'column',
-		justifyContent: 'center'
+		flexDirection: 'column'
 	},
 	container: {},
 	selector: {
@@ -59,9 +52,10 @@ class App extends Component {
 			console.log(match);
 			return (
 				<div style={style.app}>
+					<Info />
 					<GraphContainer
 						style={style.container}
-						type={match.params.type || 'BAR_GRAPH'}
+						type={match.params.type || '/'}
 						data={data}
 						{...windowSize}
 					/>

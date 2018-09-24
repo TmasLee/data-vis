@@ -98,11 +98,11 @@ class BarGraph extends Component {
 						<Bar
 							key={i}
 							x={xScale(d.name) + margin}
-							y={yScale(d.sameness)}
+							y={yScale(d.power)}
 							width={xScale.bandwidth()}
-							height={y - yScale(d.sameness) - margin}
+							height={y - yScale(d.power) - margin}
 							color={d.color}
-							rawData={d.sameness}
+							rawData={d.power}
 							toggleToolTip={this.toggleToolTip}
 							toggleToolTipOff={this.toggleToolTipOff}
 						/>
