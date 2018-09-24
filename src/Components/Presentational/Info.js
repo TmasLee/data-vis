@@ -5,7 +5,7 @@ const styles = {
 		display: 'flex',
 		textAlign: 'center',
 		justifyContent: 'space-around',
-		paddingBottom: '10%'
+		paddingBottom: '5%'
 	}
 };
 

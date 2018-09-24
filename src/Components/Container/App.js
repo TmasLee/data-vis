@@ -14,11 +14,19 @@ const style = {
 		alignItems: 'center',
 		flexDirection: 'column'
 	},
-	container: {},
 	selector: {
 		textAlign: 'center'
 	}
 };
+
+/**
+ * To Add:
+ * -	Make random button specific for bar_graph
+ * -	Tooltip reusable
+ * -  info paragraph based on what graph selected
+ * -	Select data file for Pie
+ * -	Put graph folders into presentational folder
+ */
 
 class App extends Component {
 	constructor(props) {
@@ -54,8 +62,7 @@ class App extends Component {
 				<div style={style.app}>
 					<Info />
 					<GraphContainer
-						style={style.container}
-						type={match.params.type || '/'}
+						type={match.params.type || 'BAR_GRAPH'}
 						data={data}
 						{...windowSize}
 					/>

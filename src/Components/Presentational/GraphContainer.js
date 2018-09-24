@@ -1,22 +1,19 @@
 import React from 'react';
 
-import BarGraph from '../Container/BarGraph/BarGraph';
-import LineGraph from '../Container/LineGraph/LineGraph';
+import Axes from './Axes';
 import PieChart from '../Container/PieChart/PieChart';
 
 /*
- * This component reads what type of graph to display
- * from the URL and renders the matching graph.
+ * This reads graph type to display from the URL.
  */
 const GraphContainer = ({ windowWidth, windowHeight, type, data }) => {
-	if (type === 'BAR_GRAPH') {
-		return (
-			<BarGraph x={windowWidth * 0.7} y={windowHeight * 0.6} data={data} />
-		);
-	} else if (type === 'LINE_GRAPH') {
-		return <LineGraph x={windowWidth} y={windowHeight} />;
+	let graphWidth = windowWidth * 0.7;
+	let graphHeight = windowHeight * 0.6;
+
+	if (type === 'BAR_GRAPH' || 'LINE_GRAPH') {
+		return <Axes type={type} x={graphWidth} y={graphHeight} data={data} />;
 	} else {
-		return <PieChart x={windowWidth} y={windowHeight} />;
+		return <PieChart x={graphWidth} y={graphHeight} />;
 	}
 };
 

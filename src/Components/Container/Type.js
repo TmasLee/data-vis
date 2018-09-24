@@ -3,12 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 const Type = ({ type, children }) => (
 	<NavLink
-		to={type === '' ? '/' : `/${type}`}
+		to={type === '/' ? '/BAR_GRAPH' : `/${type}`}
 		activeStyle={{
 			textDecoration: 'none',
 			color: 'black'
-		}}
-	>
+		}}>
 		{children}
 	</NavLink>
 );
