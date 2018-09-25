@@ -6,15 +6,13 @@ import { select } from 'd3-selection';
 /**
  * To Add:
  * - Btn to show raw data
- * - Dropdown to select trial to graph/maybe lab report itself too?
- * - Zoomable (with scroll?) axes
- * -
+ * - Dropdown to select trial to graph
+ * - Info --> Explain how this actual data from lab
  *
  * To Think About:
+ * - Big data set, how to store data.
  * - Make new apis for data for each graph?
  *    - New actions to fetch appropriate url
- *    - Big data set, how to store data.
- * -
  */
 
 class LineGraph extends Component {

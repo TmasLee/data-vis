@@ -18,23 +18,31 @@ class Axes extends Component {
 		};
 	}
 
-	// based on type
 	componentDidMount() {
-		this.drawBarXAxis();
+		const { type } = this.props;
+		if (type === 'BAR_GRAPH') {
+			this.drawBarXAxis();
+		} else {
+			this.drawLineXAxis();
+		}
 		this.drawYAxis();
 	}
-	// based on type
+
 	componentDidUpdate(prevProps, prevState) {
-		if (prevProps.data !== this.props.data) {
+		if (this.props.type === 'BAR_GRAPH') {
 			this.drawBarXAxis();
-			this.drawYAxis();
 		}
+		if (this.props.type === 'LINE_GRAPH') {
+			this.drawLineXAxis();
+		}
+
+		//  Resizes graph on window resize
 		if (prevProps.x !== this.props.x || prevProps.y !== this.props.y) {
-			this.getBarXScale();
-			this.getYScale();
 			this.drawBarXAxis();
 			this.drawYAxis();
 		}
+
+		this.drawYAxis();
 	}
 
 	getBarXScale = () => {
@@ -61,14 +69,14 @@ class Axes extends Component {
 
 	getLineXScale = () => {
 		const { data } = this.props;
-		this.xScale = scaleBand()
-			.domain(data.map(d => d.name))
-			.rangeRound([0, this.props.x - this.state.margin])
-			.padding(0.1);
+		this.xScale = scaleLinear()
+			.domain([0, Math.max(...data.map(d => d.power))])
+			.rangeRound([0, this.props.x]);
 		return this.xScale;
 	};
 
 	drawLineXAxis = () => {
+		console.log('sdas');
 		select(this.xAxisRef)
 			.attr(
 				'transform',
@@ -85,7 +93,7 @@ class Axes extends Component {
 	getYScale = () => {
 		this.yScale = scaleLinear()
 			.domain([0, 110])
-			.rangeRound([this.props.y - this.state.margin, this.state.margin]);
+			.rangeRound([this.props.y - this.state.margin, 5]);
 		return this.yScale;
 	};
 

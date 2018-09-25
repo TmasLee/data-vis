@@ -21,9 +21,10 @@ const style = {
 
 /**
  * To Add:
+ * -	Render empty data for transition
  * -	Make random button specific for bar_graph
- * -	Tooltip reusable
- * -  info paragraph based on what graph selected
+ * 		-	Tooltip reusable
+ * -  Info paragraph based on what graph selected
  * -	Select data file for Pie
  * -	Put graph folders into presentational folder
  */
