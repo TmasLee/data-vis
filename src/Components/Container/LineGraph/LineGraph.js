@@ -1,5 +1,8 @@
 import React from 'react';
 
+import DataPoint from './DataPoint';
+import ToolTip from '../../Presentational/Tooltip';
+
 /**
  * To Add:
  * - Btn to show raw data
@@ -27,8 +30,18 @@ const LineGraph = ({
 	const margin = 25;
 	return (
 		<svg width={x} height={y}>
-			<g ref={ref => (this.xAxisRef = ref)} />
-			<g ref={ref => (this.yAxisRef = ref)} />
+			<g>
+				{data.map((d, i) => (
+					<DataPoint
+						key={i}
+						x={xScale(d.power)}
+						y={yScale(d.power)}
+						data={d}
+						toggleToolTip={toggleToolTip}
+						toggleToolTipOff={toggleToolTipOff}
+					/>
+				))}
+			</g>
 		</svg>
 	);
 };

@@ -32,7 +32,12 @@ class Axes extends Component {
 
 		//  Resizes graph on window resize
 		if (prevProps.x !== this.props.x || prevProps.y !== this.props.y) {
-			this.drawBarXAxis();
+			if (this.props.type === 'BAR_GRAPH') {
+				this.drawBarXAxis();
+			}
+			if (this.props.type === 'LINE_GRAPH') {
+				this.drawLineXAxis();
+			}
 			this.drawYAxis();
 		}
 
@@ -60,8 +65,9 @@ class Axes extends Component {
 	getLineXScale = () => {
 		const { data } = this.props;
 		this.xScale = scaleLinear()
-			.domain([0, Math.max(...data.map(d => d.power))])
-			.rangeRound([0, this.props.x]);
+			// Math.max(...data.map(d => d.power))
+			.domain([0, 110])
+			.rangeRound([this.margin, this.props.x - this.margin]);
 		return this.xScale;
 	};
 
@@ -69,7 +75,7 @@ class Axes extends Component {
 		select(this.xAxisRef)
 			.attr(
 				'transform',
-				'translate(' + this.margin + ',' + (this.props.y - this.margin) + ')'
+				'translate(' + 0 + ',' + (this.props.y - this.margin) + ')'
 			)
 			.call(axisBottom(this.getLineXScale()));
 	};
