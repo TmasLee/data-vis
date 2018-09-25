@@ -7,15 +7,9 @@ import BarGraph from '../Container/BarGraph/BarGraph';
 import LineGraph from '../Container/LineGraph/LineGraph';
 
 class Axes extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			margin: 25,
-			visibility: 'hidden',
-			toolTipX: 0,
-			toolTipY: 0,
-			toolTipText: ''
-		};
+	constructor() {
+		super();
+		this.margin = 25;
 	}
 
 	componentDidMount() {
@@ -49,7 +43,7 @@ class Axes extends Component {
 		const { data } = this.props;
 		this.xScale = scaleBand()
 			.domain(data.map(d => d.name))
-			.rangeRound([0, this.props.x - this.state.margin])
+			.rangeRound([0, this.props.x - this.margin])
 			.padding(0.1);
 		return this.xScale;
 	};
@@ -58,11 +52,7 @@ class Axes extends Component {
 		select(this.xAxisRef)
 			.attr(
 				'transform',
-				'translate(' +
-					this.state.margin +
-					',' +
-					(this.props.y - this.state.margin) +
-					')'
+				'translate(' + this.margin + ',' + (this.props.y - this.margin) + ')'
 			)
 			.call(axisBottom(this.getBarXScale()));
 	};
@@ -76,15 +66,10 @@ class Axes extends Component {
 	};
 
 	drawLineXAxis = () => {
-		console.log('sdas');
 		select(this.xAxisRef)
 			.attr(
 				'transform',
-				'translate(' +
-					this.state.margin +
-					',' +
-					(this.props.y - this.state.margin) +
-					')'
+				'translate(' + this.margin + ',' + (this.props.y - this.margin) + ')'
 			)
 			.call(axisBottom(this.getLineXScale()));
 	};
@@ -93,26 +78,52 @@ class Axes extends Component {
 	getYScale = () => {
 		this.yScale = scaleLinear()
 			.domain([0, 110])
-			.rangeRound([this.props.y - this.state.margin, 5]);
+			.rangeRound([this.props.y - this.margin, 5]);
 		return this.yScale;
 	};
 
 	drawYAxis = () => {
 		select(this.yAxisRef)
-			.attr('transform', 'translate(' + this.state.margin + ',0)')
+			.attr('transform', 'translate(' + this.margin + ',0)')
 			.call(axisLeft(this.getYScale()));
 	};
 
 	render() {
-		const { x, y, data, type } = this.props;
+		const {
+			x,
+			y,
+			data,
+			type,
+			appState,
+			toggleToolTip,
+			toggleToolTipOff
+		} = this.props;
 		const xScale =
 			type === 'BAR_GRAPH' ? this.getBarXScale() : this.getLineXScale();
 		const yScale = this.getYScale();
 		const graph =
 			type === 'BAR_GRAPH' ? (
-				<BarGraph x={x} y={y} xScale={xScale} yScale={yScale} data={data} />
+				<BarGraph
+					x={x}
+					y={y}
+					xScale={xScale}
+					yScale={yScale}
+					data={data}
+					{...appState}
+					toggleToolTip={toggleToolTip}
+					toggleToolTipOff={toggleToolTipOff}
+				/>
 			) : (
-				<LineGraph x={x} y={y} xScale={xScale} yScale={yScale} data={data} />
+				<LineGraph
+					x={x}
+					y={y}
+					xScale={xScale}
+					yScale={yScale}
+					data={data}
+					{...appState}
+					toggleToolTip={toggleToolTip}
+					toggleToolTipOff={toggleToolTipOff}
+				/>
 			);
 		return (
 			<svg width={x} height={y}>

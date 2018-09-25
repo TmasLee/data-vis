@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
-import { axisLeft, axisBottom } from 'd3-axis';
-import { scaleBand, scaleLinear } from 'd3-scale';
-import { select } from 'd3-selection';
+import React from 'react';
 
 /**
  * To Add:
  * - Btn to show raw data
  * - Dropdown to select trial to graph
- * - Info --> Explain how this actual data from lab
  *
  * To Think About:
  * - Big data set, how to store data.
@@ -15,28 +11,26 @@ import { select } from 'd3-selection';
  *    - New actions to fetch appropriate url
  */
 
-class LineGraph extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			margin: 25,
-			visibility: 'hidden',
-			toolTipX: 0,
-			toolTipY: 0,
-			toolTipText: ''
-		};
-	}
-
-	render() {
-		const { x, y, xScale, yScale, data } = this.props;
-		const { margin, toolTipX, toolTipY, visibility, toolTipText } = this.state;
-		return (
-			<svg width={x} height={y}>
-				<g ref={ref => (this.xAxisRef = ref)} />
-				<g ref={ref => (this.yAxisRef = ref)} />
-			</svg>
-		);
-	}
-}
+const LineGraph = ({
+	x,
+	y,
+	xScale,
+	yScale,
+	data,
+	toolTipX,
+	toolTipY,
+	visibility,
+	toolTipText,
+	toggleToolTip,
+	toggleToolTipOff
+}) => {
+	const margin = 25;
+	return (
+		<svg width={x} height={y}>
+			<g ref={ref => (this.xAxisRef = ref)} />
+			<g ref={ref => (this.yAxisRef = ref)} />
+		</svg>
+	);
+};
 
 export default LineGraph;
