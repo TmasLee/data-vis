@@ -1,12 +1,10 @@
 import React from 'react';
 import MenuBtn from './MenuBtn';
 
-const Menu = ({ items }) => {
+const Menu = ({ type, display }) => {
 	return (
 		<div>
-			{items.map((item, i) => {
-				return <MenuBtn key={i} item={item} />;
-			})}
+			<MenuBtn type={type} display={display} />
 		</div>
 	);
 };

@@ -18,6 +18,32 @@ export function fetchData() {
 	};
 }
 
+export function fetchTrialData(chemical, trial) {
+	return dispatch => {
+		fetch(
+			chemical === 'Holmium'
+				? `${url}holmiumTrial${trial}`
+				: `${url}KMnO4Trial${trial}`,
+			{ method: 'GET' }
+		)
+			.then(res => {
+				return res.json();
+			})
+			.then(res => {
+				dispatch({
+					type:
+						chemical === 'Holmium'
+							? `FETCH_HOLMIUM_${trial}`
+							: `FETCH_KMNO4_${trial}`,
+					data: res.data
+				});
+			})
+			.catch(err => {
+				console.error(err);
+			});
+	};
+}
+
 export function randomizeData() {
 	return dispatch => {
 		return fetch(`${url}randomize`, { method: 'PUT' })
@@ -42,6 +68,10 @@ export function randomizeAndFetch() {
 				console.error(err);
 			});
 	};
+}
+
+export function changeLineData() {
+	return dispatch => {};
 }
 
 export function resizeWindow() {

@@ -65,8 +65,10 @@ class Axes extends Component {
 	getLineXScale = () => {
 		const { data } = this.props;
 		this.xScale = scaleLinear()
-			// Math.max(...data.map(d => d.power))
-			.domain([0, 110])
+			.domain([
+				Math.min(...data.map(d => d.Wavelength)) - 10,
+				Math.max(...data.map(d => d.Wavelength))
+			])
 			.rangeRound([this.margin, this.props.x - this.margin]);
 		return this.xScale;
 	};
@@ -82,8 +84,13 @@ class Axes extends Component {
 
 	// Make y axis zoomable for bar and line
 	getYScale = () => {
+		const { type, data } = this.props;
 		this.yScale = scaleLinear()
-			.domain([0, 110])
+			.domain(
+				type === 'BAR_GRAPH'
+					? [0, Math.max(...data.map(d => d.power))]
+					: [0, Math.max(...data.map(d => d.Intensity))]
+			)
 			.rangeRound([this.props.y - this.margin, 5]);
 		return this.yScale;
 	};

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { select, easeLinear } from 'd3';
-import { transition as d3Transition } from 'd3-transition';
+import { select } from 'd3';
 
 class DataPoint extends Component {
 	constructor() {
 		super();
-		this.radius = 10;
+		this.radius = 3;
 		this.color = 'blue';
 	}
 
@@ -23,11 +22,10 @@ class DataPoint extends Component {
 	};
 
 	onHover = () => {
-		// Increase radius
+		// Increase radius and change color
 	};
 
 	render() {
-		const { x, y, data, toggleToolTip, toggleToolTipOff } = this.props;
 		return (
 			<circle
 				ref={ref => (this.pointRef = ref)}

@@ -21,13 +21,15 @@ const style = {
 
 /**
  * To Add:
- * -	Render empty data for transition
- * -	Make random button specific for bar_graph --> Move into state?
- * 		-	Make Tooltip reusable
- * -  Info paragraph based on what graph selected
- * 	 	- Explain LineGraph data is actual data from lab
- * -	Select data file for Pie
+ * -	ComponentDidUpdate in datapoints to update when data changes
+ * -  Graph titles in axes.js
+ * -	Graph axes labels
+ * -	Optimize loading/saving data
+ * -  Info based on graph selected --> Explain LineGraph data is lab data
  * -	Put graph folders into presentational folder
+ * -	Render empty data for transition
+ * -	Call actions in other components?
+ * -	Currently rendering 2 svgs, 1 for axes 1 for a graph. Look into this.
  */
 
 class App extends Component {
@@ -43,6 +45,10 @@ class App extends Component {
 			{
 				name: 'Randomize Data!',
 				func: this.randomizeData
+			},
+			{
+				name: 'Select trial data',
+				func: this.selectTrial
 			}
 		];
 	}
@@ -50,6 +56,7 @@ class App extends Component {
 	componentDidMount() {
 		window.addEventListener('resize', this.handleResize);
 		this.props.dispatch(appActions.fetchData());
+		this.props.dispatch(appActions.fetchTrialData('Holmium', 1));
 	}
 
 	handleResize = e => {
@@ -58,6 +65,10 @@ class App extends Component {
 
 	randomizeData = () => {
 		this.props.dispatch(appActions.randomizeAndFetch());
+	};
+
+	selectTrial = (chemical, trialNum) => {
+		this.props.dispatch(appActions.fetchTrialData(chemical, trialNum));
 	};
 
 	toggleToolTip = (x, y, data) => {
@@ -74,7 +85,7 @@ class App extends Component {
 	};
 
 	render() {
-		const { match, graphType, windowSize, data } = this.props;
+		const { match, lineData, windowSize, data } = this.props;
 		if (!this.props.data) {
 			return null;
 		} else {
@@ -85,13 +96,14 @@ class App extends Component {
 					<GraphContainer
 						type={match.params.type || 'BAR_GRAPH'}
 						data={data}
+						lineData={lineData}
 						appState={this.state}
 						toggleToolTip={this.toggleToolTip}
 						toggleToolTipOff={this.toggleToolTipOff}
 						{...windowSize}
 					/>
 					<GraphTypeSelector style={style.selector} />
-					<Menu items={this.menuItems} />
+					<Menu type={match.params.type} display={this.menuItems} />
 				</div>
 			);
 		}
@@ -102,6 +114,7 @@ export default connect((state, props) => {
 	return {
 		windowSize: state.app.windowSize,
 		graphType: state.app.graphType,
-		data: state.app.data
+		data: state.app.data,
+		lineData: state.app.lineData
 	};
 })(App);

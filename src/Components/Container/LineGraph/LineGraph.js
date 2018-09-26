@@ -6,12 +6,7 @@ import ToolTip from '../../Presentational/Tooltip';
 /**
  * To Add:
  * - Btn to show raw data
- * - Dropdown to select trial to graph
- *
- * To Think About:
- * - Big data set, how to store data.
- * - Make new apis for data for each graph?
- *    - New actions to fetch appropriate url
+ * - Tool tip
  */
 
 const LineGraph = ({
@@ -34,8 +29,8 @@ const LineGraph = ({
 				{data.map((d, i) => (
 					<DataPoint
 						key={i}
-						x={xScale(d.power)}
-						y={yScale(d.power)}
+						x={xScale(d.Wavelength)}
+						y={yScale(d.Intensity)}
 						data={d}
 						toggleToolTip={toggleToolTip}
 						toggleToolTipOff={toggleToolTipOff}

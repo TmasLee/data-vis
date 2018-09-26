@@ -11,11 +11,12 @@ const GraphContainer = ({
 	windowHeight,
 	type,
 	data,
+	lineData,
 	appState,
 	toggleToolTip,
 	toggleToolTipOff
 }) => {
-	let graphWidth = windowWidth * 0.7;
+	let graphWidth = windowWidth * 0.8;
 	let graphHeight = windowHeight * 0.6;
 
 	if (type === 'BAR_GRAPH' || 'LINE_GRAPH') {
@@ -24,7 +25,8 @@ const GraphContainer = ({
 				type={type}
 				x={graphWidth}
 				y={graphHeight}
-				data={data}
+				data={type === 'BAR_GRAPH' ? data : lineData}
+				lineData={lineData}
 				appState={appState}
 				toggleToolTip={toggleToolTip}
 				toggleToolTipOff={toggleToolTipOff}
