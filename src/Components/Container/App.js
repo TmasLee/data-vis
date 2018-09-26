@@ -103,7 +103,10 @@ class App extends Component {
 						{...windowSize}
 					/>
 					<GraphTypeSelector style={style.selector} />
-					<Menu type={match.params.type} display={this.menuItems} />
+					<Menu
+						type={match.params.type || 'BAR_GRAPH'}
+						display={this.menuItems}
+					/>
 				</div>
 			);
 		}

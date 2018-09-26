@@ -70,10 +70,6 @@ export function randomizeAndFetch() {
 	};
 }
 
-export function changeLineData() {
-	return dispatch => {};
-}
-
 export function resizeWindow() {
 	return {
 		type: 'RESIZE_WINDOW_DIMENSIONS',

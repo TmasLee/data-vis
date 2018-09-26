@@ -88,7 +88,7 @@ class Axes extends Component {
 		this.yScale = scaleLinear()
 			.domain(
 				type === 'BAR_GRAPH'
-					? [0, Math.max(...data.map(d => d.power))]
+					? [0, 110]
 					: [0, Math.max(...data.map(d => d.Intensity))]
 			)
 			.rangeRound([this.props.y - this.margin, 5]);

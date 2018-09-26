@@ -4,7 +4,7 @@ import { select } from 'd3';
 class DataPoint extends Component {
 	constructor() {
 		super();
-		this.radius = 3;
+		this.radius = 4;
 		this.color = 'blue';
 	}
 
@@ -12,7 +12,11 @@ class DataPoint extends Component {
 		this.updatePosition();
 	}
 
-	componentDidUpdate(prevProps, prevState) {}
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.x !== this.props.x || prevProps.y !== this.props.y) {
+			this.updatePosition();
+		}
+	}
 
 	updatePosition = () => {
 		const { x, y } = this.props;
@@ -21,8 +25,13 @@ class DataPoint extends Component {
 			.attr('cy', y);
 	};
 
-	onHover = () => {
-		// Increase radius and change color
+	onMouseOver = () => {
+		// Increase radius
+		select(this.pointRef).style('fill', 'red');
+	};
+
+	onMouseOut = () => {
+		select(this.pointRef).style('fill', 'blue');
 	};
 
 	render() {
@@ -31,6 +40,14 @@ class DataPoint extends Component {
 				ref={ref => (this.pointRef = ref)}
 				r={this.radius}
 				fill={this.color}
+				onMouseOver={e => {
+					e.preventDefault();
+					this.onMouseOver();
+				}}
+				onMouseOut={e => {
+					e.preventDefault();
+					this.onMouseOut();
+				}}
 			/>
 		);
 	}

@@ -8,8 +8,8 @@ import { select } from 'd3';
  * -	Fix hard-coded variables. Make dynamic
  */
 class Tooltip extends Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 		this.height = 40;
 		this.centerOffSet = 9.5; // Calculated by: (bar width - tooltip width)/2
 		this.heightOffSet = 10; //Height of triangle
