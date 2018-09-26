@@ -22,7 +22,6 @@ const LineGraph = ({
 	toggleToolTip,
 	toggleToolTipOff
 }) => {
-	const margin = 25;
 	return (
 		<svg width={x} height={y}>
 			<g>
@@ -31,11 +30,19 @@ const LineGraph = ({
 						key={i}
 						x={xScale(d.Wavelength)}
 						y={yScale(d.Intensity)}
-						data={d}
+						data={[d.Wavelength, d.Intensity]}
 						toggleToolTip={toggleToolTip}
 						toggleToolTipOff={toggleToolTipOff}
 					/>
 				))}
+				<ToolTip
+					x={toolTipX}
+					y={toolTipY}
+					visibility={visibility}
+					data={toolTipText}
+					centerOffSet={-55.5}
+					halfBarWidth={4}
+				/>
 			</g>
 		</svg>
 	);

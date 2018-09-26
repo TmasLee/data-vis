@@ -21,10 +21,8 @@ const style = {
 
 /**
  * To Add:
- * -	ComponentDidUpdate in datapoints to update when data changes
  * -  Graph titles in axes.js
  * -	Graph axes labels
- * -	Optimize loading/saving data
  * -  Info based on graph selected --> Explain LineGraph data is lab data
  * -	Put graph folders into presentational folder
  * -	Render empty data for transition

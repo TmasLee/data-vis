@@ -38,6 +38,8 @@ const BarGraph = ({
 					y={toolTipY}
 					visibility={visibility}
 					data={toolTipText}
+					centerOffSet={0}
+					halfBarWidth={59.5}
 				/>
 			</g>
 		</svg>

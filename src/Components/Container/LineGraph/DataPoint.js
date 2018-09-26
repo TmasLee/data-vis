@@ -27,14 +27,15 @@ class DataPoint extends Component {
 
 	onMouseOver = () => {
 		// Increase radius
-		select(this.pointRef).style('fill', 'red');
+		select(this.pointRef).attr('fill', 'red');
 	};
 
 	onMouseOut = () => {
-		select(this.pointRef).style('fill', 'blue');
+		select(this.pointRef).attr('fill', 'blue');
 	};
 
 	render() {
+		const { x, y, data, toggleToolTip, toggleToolTipOff } = this.props;
 		return (
 			<circle
 				ref={ref => (this.pointRef = ref)}
@@ -43,10 +44,12 @@ class DataPoint extends Component {
 				onMouseOver={e => {
 					e.preventDefault();
 					this.onMouseOver();
+					toggleToolTip(x, y, data);
 				}}
 				onMouseOut={e => {
 					e.preventDefault();
 					this.onMouseOut();
+					toggleToolTipOff();
 				}}
 			/>
 		);

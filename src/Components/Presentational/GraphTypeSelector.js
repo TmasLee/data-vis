@@ -11,10 +11,6 @@ const GraphTypeSelector = () => (
 		<Type type={GraphType.LINE_GRAPH}>Line</Type>
 		{', '}
 		<Type type={GraphType.PIE_CHART}>Pie</Type>
-		{', '}
-		<Type>ph_comparative</Type>
-		{', '}
-		<Type>ph_vr</Type>
 	</p>
 );
 
