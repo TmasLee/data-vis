@@ -16,8 +16,8 @@ const GraphContainer = ({
 	toggleToolTip,
 	toggleToolTipOff
 }) => {
-	let graphWidth = windowWidth * 0.8;
-	let graphHeight = windowHeight * 0.6;
+	let graphWidth = windowWidth * 0.95;
+	let graphHeight = windowHeight * 0.9;
 
 	if (type === 'BAR_GRAPH' || 'LINE_GRAPH') {
 		return (

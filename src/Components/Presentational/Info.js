@@ -4,8 +4,7 @@ const styles = {
 	main: {
 		display: 'flex',
 		textAlign: 'center',
-		justifyContent: 'space-around',
-		paddingBottom: '5%'
+		justifyContent: 'space-around'
 	}
 };
 

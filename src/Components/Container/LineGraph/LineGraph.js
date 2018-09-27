@@ -3,12 +3,6 @@ import React from 'react';
 import DataPoint from './DataPoint';
 import ToolTip from '../../Presentational/Tooltip';
 
-/**
- * To Add:
- * - Btn to show raw data
- * - Tool tip
- */
-
 const LineGraph = ({
 	x,
 	y,
@@ -20,7 +14,8 @@ const LineGraph = ({
 	visibility,
 	toolTipText,
 	toggleToolTip,
-	toggleToolTipOff
+	toggleToolTipOff,
+	toolTipWidth
 }) => {
 	return (
 		<svg width={x} height={y}>
@@ -41,7 +36,8 @@ const LineGraph = ({
 					visibility={visibility}
 					data={toolTipText}
 					centerOffSet={-55.5}
-					halfBarWidth={4}
+					halfBarWidth={0}
+					width={toolTipWidth}
 				/>
 			</g>
 		</svg>

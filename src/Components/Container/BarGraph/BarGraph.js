@@ -14,16 +14,19 @@ const BarGraph = ({
 	visibility,
 	toolTipText,
 	toggleToolTip,
-	toggleToolTipOff
+	toggleToolTipOff,
+	toolTipWidth
 }) => {
-	const margin = 25;
+	const margin = 60;
+	const halfBarWidth = xScale.bandwidth() / 2;
+	const centerOffSet = (xScale.bandwidth() - toolTipWidth) / 2;
 	return (
 		<svg width={x} height={y}>
 			<g>
 				{data.map((d, i) => (
 					<Bar
 						key={i}
-						x={xScale(d.name) + margin}
+						x={xScale(d.name)}
 						y={yScale(d.power)}
 						width={xScale.bandwidth()}
 						height={y - yScale(d.power) - margin}
@@ -38,8 +41,9 @@ const BarGraph = ({
 					y={toolTipY}
 					visibility={visibility}
 					data={toolTipText}
-					centerOffSet={0}
-					halfBarWidth={59.5}
+					centerOffSet={centerOffSet}
+					halfBarWidth={halfBarWidth}
+					width={toolTipWidth}
 				/>
 			</g>
 		</svg>

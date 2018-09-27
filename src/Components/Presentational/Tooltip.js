@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import { select } from 'd3';
 
-/**
- * To-Do:
- * -	Make tooltip rect/triangle/text a separate component.
- * -	Fix hard-coded variables. Make dynamic
- */
 class Tooltip extends Component {
 	constructor() {
 		super();
 		this.height = 40;
 		this.heightOffSet = 10; //Height of triangle
 		this.halfTriangleWidth = 5;
-		this.textCenter = 25;
+		this.verticalTextCenter = 27;
 	}
 	componentDidMount() {
 		this.updatePosition();
@@ -37,12 +32,12 @@ class Tooltip extends Component {
 
 		select(this.toolTipText)
 			.attr('x', x + halfBarWidth)
-			.attr('y', y - this.textCenter)
+			.attr('y', y - this.verticalTextCenter)
 			.attr('text-anchor', 'middle')
-			.style('font-size', 12)
+			.style('font-size', 11)
 			.style('fill', 'white')
 			.text(function() {
-				return `Value: ${data}`;
+				return `Value: [${data}]`;
 			})
 			.attr('visibility', `${visibility}`);
 
@@ -60,12 +55,12 @@ class Tooltip extends Component {
 	};
 
 	render() {
-		const { x, y, halfBarWidth } = this.props;
+		const { x, y, halfBarWidth, width } = this.props;
 		return (
 			<g>
 				<rect
 					ref={ref => (this.toolTipRect = ref)}
-					width={119}
+					width={width}
 					height={this.height}
 				/>
 				<text ref={ref => (this.toolTipText = ref)} />

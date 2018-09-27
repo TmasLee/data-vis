@@ -19,7 +19,11 @@ class Bar extends Component {
 			prevProps.height !== this.props.height ||
 			prevProps.y !== this.props.y
 		) {
-			this.updateBar(false);
+			if (prevProps.rawData !== this.props.rawData) {
+				this.updateBar(false);
+			} else {
+				this.updateBar(true);
+			}
 		}
 	}
 

@@ -8,7 +8,7 @@ const GraphTypeSelector = () => (
 		Display:
 		<Type type={GraphType.BAR_GRAPH}>Bar</Type>
 		{', '}
-		<Type type={GraphType.LINE_GRAPH}>Line</Type>
+		<Type type={GraphType.LINE_GRAPH}>Scatter</Type>
 		{', '}
 		<Type type={GraphType.PIE_CHART}>Pie</Type>
 	</p>

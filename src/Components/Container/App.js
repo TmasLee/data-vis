@@ -12,10 +12,14 @@ const style = {
 		display: 'flex',
 		height: '100vh',
 		alignItems: 'center',
-		flexDirection: 'column'
+		flexDirection: 'column',
+		justifyContent: 'space-between'
 	},
 	selector: {
-		textAlign: 'center'
+		display: 'flex',
+		textAlign: 'center',
+		justifyContent: 'space-around',
+		paddingTop: '5%'
 	}
 };
 
@@ -23,11 +27,12 @@ const style = {
  * To Add:
  * -  Graph titles in axes.js
  * -	Graph axes labels
+ * -	Line graph show data buttons
+ *
  * -  Info based on graph selected --> Explain LineGraph data is lab data
  * -	Put graph folders into presentational folder
  * -	Render empty data for transition
  * -	Call actions in other components?
- * -	Currently rendering 2 svgs, 1 for axes 1 for a graph. Look into this.
  */
 
 class App extends Component {
@@ -92,6 +97,7 @@ class App extends Component {
 				<div style={style.app}>
 					<Info />
 					<GraphContainer
+						style={style.graphContainer}
 						type={match.params.type || 'BAR_GRAPH'}
 						data={data}
 						lineData={lineData}

@@ -5,7 +5,7 @@ class DataPoint extends Component {
 	constructor() {
 		super();
 		this.radius = 4;
-		this.color = 'blue';
+		this.color = 'rgb(99, 152, 237)';
 	}
 
 	componentDidMount() {
@@ -26,12 +26,17 @@ class DataPoint extends Component {
 	};
 
 	onMouseOver = () => {
-		// Increase radius
-		select(this.pointRef).attr('fill', 'red');
+		select(this.pointRef)
+			.attr('fill', 'red')
+			.attr('r', 8)
+			.style('z-index', 1000);
 	};
 
 	onMouseOut = () => {
-		select(this.pointRef).attr('fill', 'blue');
+		select(this.pointRef)
+			.attr('fill', 'rgb(99, 152, 237)')
+			.attr('r', this.radius)
+			.style('z-index', 1);
 	};
 
 	render() {

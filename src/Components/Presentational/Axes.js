@@ -9,7 +9,10 @@ import LineGraph from '../Container/LineGraph/LineGraph';
 class Axes extends Component {
 	constructor() {
 		super();
-		this.margin = 25;
+		this.margin = 60;
+		this.rightMargin = 20;
+		this.topMargin = 5;
+		this.toolTipWidth = 119;
 	}
 
 	componentDidMount() {
@@ -48,7 +51,7 @@ class Axes extends Component {
 		const { data } = this.props;
 		this.xScale = scaleBand()
 			.domain(data.map(d => d.name))
-			.rangeRound([0, this.props.x - this.margin])
+			.rangeRound([this.margin, this.props.x - this.rightMargin])
 			.padding(0.1);
 		return this.xScale;
 	};
@@ -57,18 +60,17 @@ class Axes extends Component {
 		select(this.xAxisRef)
 			.attr(
 				'transform',
-				'translate(' + this.margin + ',' + (this.props.y - this.margin) + ')'
+				'translate(' + 0 + ',' + (this.props.y - this.margin) + ')'
 			)
 			.call(axisBottom(this.getBarXScale()));
 	};
 
 	getLineXScale = () => {
 		const { data } = this.props;
+		const min = Math.min(...data.map(d => d.Wavelength));
+		const max = Math.max(...data.map(d => d.Wavelength));
 		this.xScale = scaleLinear()
-			.domain([
-				Math.min(...data.map(d => d.Wavelength)) - 10,
-				Math.max(...data.map(d => d.Wavelength))
-			])
+			.domain([min - 10, max * 1.03])
 			.rangeRound([this.margin, this.props.x - this.margin]);
 		return this.xScale;
 	};
@@ -82,22 +84,18 @@ class Axes extends Component {
 			.call(axisBottom(this.getLineXScale()));
 	};
 
-	// Make y axis zoomable for bar and line
 	getYScale = () => {
 		const { type, data } = this.props;
+		const max = Math.max(...data.map(d => d.Intensity));
 		this.yScale = scaleLinear()
-			.domain(
-				type === 'BAR_GRAPH'
-					? [0, 110]
-					: [0, Math.max(...data.map(d => d.Intensity))]
-			)
-			.rangeRound([this.props.y - this.margin, 5]);
+			.domain(type === 'BAR_GRAPH' ? [0, 110] : [0, max * 1.1])
+			.rangeRound([this.props.y - this.margin, this.topMargin]);
 		return this.yScale;
 	};
 
 	drawYAxis = () => {
 		select(this.yAxisRef)
-			.attr('transform', 'translate(' + this.margin + ',0)')
+			.attr('transform', 'translate(' + this.margin + ',' + 0 + ')')
 			.call(axisLeft(this.getYScale()));
 	};
 
@@ -125,6 +123,7 @@ class Axes extends Component {
 					{...appState}
 					toggleToolTip={toggleToolTip}
 					toggleToolTipOff={toggleToolTipOff}
+					toolTipWidth={this.toolTipWidth}
 				/>
 			) : (
 				<LineGraph
@@ -136,6 +135,7 @@ class Axes extends Component {
 					{...appState}
 					toggleToolTip={toggleToolTip}
 					toggleToolTipOff={toggleToolTipOff}
+					toolTipWidth={this.toolTipWidth}
 				/>
 			);
 		return (
