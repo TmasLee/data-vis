@@ -13,6 +13,7 @@ class Axes extends Component {
 		this.rightMargin = 20;
 		this.topMargin = 5;
 		this.toolTipWidth = 119;
+		this.labelOffset = 15;
 	}
 
 	componentDidMount() {
@@ -63,6 +64,7 @@ class Axes extends Component {
 				'translate(' + 0 + ',' + (this.props.y - this.margin) + ')'
 			)
 			.call(axisBottom(this.getBarXScale()));
+		this.drawXAxisLabel('People');
 	};
 
 	getLineXScale = () => {
@@ -82,6 +84,21 @@ class Axes extends Component {
 				'translate(' + 0 + ',' + (this.props.y - this.margin) + ')'
 			)
 			.call(axisBottom(this.getLineXScale()));
+		this.drawXAxisLabel('Wavelength');
+	};
+
+	drawXAxisLabel = name => {
+		select(this.xLabel)
+			.attr('text-anchor', 'middle')
+			.attr(
+				'transform',
+				'translate(' +
+					(this.margin / 2 + (this.props.x - this.rightMargin) / 2) +
+					',' +
+					(this.props.y - this.labelOffset) +
+					')'
+			)
+			.text(name);
 	};
 
 	getYScale = () => {
@@ -97,6 +114,17 @@ class Axes extends Component {
 		select(this.yAxisRef)
 			.attr('transform', 'translate(' + this.margin + ',' + 0 + ')')
 			.call(axisLeft(this.getYScale()));
+		select(this.yLabel)
+			.attr('text-anchor', 'middle')
+			.attr(
+				'transform',
+				'translate(' +
+					(this.margin - 3 * this.labelOffset) +
+					',' +
+					(this.topMargin + (this.props.y - this.margin) / 2) +
+					')rotate(-90)'
+			)
+			.text(this.props.type === 'BAR_GRAPH' ? 'Power' : 'Intensity');
 	};
 
 	render() {
@@ -142,6 +170,8 @@ class Axes extends Component {
 			<svg width={x} height={y}>
 				<g ref={ref => (this.xAxisRef = ref)} />
 				<g ref={ref => (this.yAxisRef = ref)} />
+				<text ref={ref => (this.xLabel = ref)} />
+				<text ref={ref => (this.yLabel = ref)} />
 				{graph}
 			</svg>
 		);

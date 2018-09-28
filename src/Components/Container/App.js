@@ -25,11 +25,8 @@ const style = {
 
 /**
  * To Add:
- * -  Graph titles in axes.js
- * -	Graph axes labels
+ * -	Fix svg height (cuts off x axis )
  * -	Line graph show data buttons
- *
- * -  Info based on graph selected --> Explain LineGraph data is lab data
  * -	Put graph folders into presentational folder
  * -	Render empty data for transition
  * -	Call actions in other components?
@@ -95,7 +92,7 @@ class App extends Component {
 			// console.log(match);
 			return (
 				<div style={style.app}>
-					<Info />
+					<Info type={match.params.type} />
 					<GraphContainer
 						style={style.graphContainer}
 						type={match.params.type || 'BAR_GRAPH'}
