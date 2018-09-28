@@ -1,13 +1,5 @@
 import React from 'react';
 
-const styles = {
-	main: {
-		display: 'flex',
-		textAlign: 'center',
-		justifyContent: 'space-around'
-	}
-};
-
 const Info = ({ type }) => {
 	if (type === 'BAR_GRAPH') {
 		return (
@@ -27,7 +19,7 @@ const Info = ({ type }) => {
 		);
 	} else if (type === 'LINE_GRAPH') {
 		return (
-			<div style={styles.main}>
+			<div>
 				<p>
 					This graph is a plot of actual lab data that I collected in one of my
 					upper level chemistry lab college courses. Click the button to see the

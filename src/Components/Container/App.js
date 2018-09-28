@@ -10,24 +10,23 @@ import Menu from '../Presentational/Menu';
 const style = {
 	app: {
 		display: 'flex',
-		height: '100vh',
+		height: '98vh',
 		alignItems: 'center',
 		flexDirection: 'column',
 		justifyContent: 'space-between'
 	},
-	selector: {
+	menu: {
 		display: 'flex',
-		textAlign: 'center',
-		justifyContent: 'space-around',
-		paddingTop: '5%'
+		width: '35%',
+		justifyContent: 'space-between'
+	},
+	selector: {
+		padding: '0 10px'
 	}
 };
 
 /**
  * To Add:
- * -	Fix svg height (cuts off x axis )
- * -	Line graph show data buttons
- * -	Put graph folders into presentational folder
  * -	Render empty data for transition
  * -	Call actions in other components?
  */
@@ -92,7 +91,7 @@ class App extends Component {
 			// console.log(match);
 			return (
 				<div style={style.app}>
-					<Info type={match.params.type} />
+					<Info type={match.params.type || 'BAR_GRAPH'} />
 					<GraphContainer
 						style={style.graphContainer}
 						type={match.params.type || 'BAR_GRAPH'}
@@ -103,11 +102,13 @@ class App extends Component {
 						toggleToolTipOff={this.toggleToolTipOff}
 						{...windowSize}
 					/>
-					<GraphTypeSelector style={style.selector} />
-					<Menu
-						type={match.params.type || 'BAR_GRAPH'}
-						display={this.menuItems}
-					/>
+					<div style={style.menu}>
+						<GraphTypeSelector style={style.selector} />
+						<Menu
+							type={match.params.type || 'BAR_GRAPH'}
+							display={this.menuItems}
+						/>
+					</div>
 				</div>
 			);
 		}

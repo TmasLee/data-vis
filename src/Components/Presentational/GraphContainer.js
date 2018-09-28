@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Axes from './Axes';
-import PieChart from '../Container/PieChart/PieChart';
+import PieChart from './PieChart/PieChart';
 
 /*
  * This reads graph type to display from the URL.
@@ -17,7 +17,7 @@ const GraphContainer = ({
 	toggleToolTipOff
 }) => {
 	let graphWidth = windowWidth * 0.95;
-	let graphHeight = windowHeight * 0.9;
+	let graphHeight = windowHeight * 0.85;
 
 	if (type === 'BAR_GRAPH' || 'LINE_GRAPH') {
 		return (

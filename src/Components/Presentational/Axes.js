@@ -3,8 +3,8 @@ import { axisLeft, axisBottom } from 'd3-axis';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
 
-import BarGraph from '../Container/BarGraph/BarGraph';
-import LineGraph from '../Container/LineGraph/LineGraph';
+import BarGraph from './BarGraph/BarGraph';
+import LineGraph from './LineGraph/LineGraph';
 
 class Axes extends Component {
 	constructor() {
