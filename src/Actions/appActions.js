@@ -79,3 +79,17 @@ export function resizeWindow() {
 		}
 	};
 }
+
+export function disableBtn() {
+	return {
+		type: 'DISABLE_BUTTON',
+		updatingBar: true
+	};
+}
+
+export function enableBtn() {
+	return {
+		type: 'ENABLE_BUTTON',
+		updatingBar: false
+	};
+}

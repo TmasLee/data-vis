@@ -19,16 +19,13 @@ const style = {
 		display: 'flex',
 		width: '35%',
 		justifyContent: 'space-between'
-	},
-	selector: {
-		padding: '0 10px'
 	}
 };
 
 /**
  * To Add:
- * -	Render empty data for transition
- * -	Call actions in other components?
+ * -	Better way to pass props through children/multiple components
+ * -	Zoomable y axis? Scatter scalable x?
  */
 
 class App extends Component {
@@ -64,6 +61,11 @@ class App extends Component {
 
 	randomizeData = () => {
 		this.props.dispatch(appActions.randomizeAndFetch());
+		this.props.dispatch(appActions.disableBtn());
+	};
+
+	enableBtn = () => {
+		this.props.dispatch(appActions.enableBtn());
 	};
 
 	selectTrial = (chemical, trialNum) => {
@@ -84,7 +86,7 @@ class App extends Component {
 	};
 
 	render() {
-		const { match, lineData, windowSize, data } = this.props;
+		const { match, windowSize, updatingBar, data, lineData } = this.props;
 		if (!this.props.data) {
 			return null;
 		} else {
@@ -98,14 +100,16 @@ class App extends Component {
 						data={data}
 						lineData={lineData}
 						appState={this.state}
+						enableBtn={this.enableBtn}
 						toggleToolTip={this.toggleToolTip}
 						toggleToolTipOff={this.toggleToolTipOff}
 						{...windowSize}
 					/>
 					<div style={style.menu}>
-						<GraphTypeSelector style={style.selector} />
+						<GraphTypeSelector />
 						<Menu
 							type={match.params.type || 'BAR_GRAPH'}
+							updatingBar={updatingBar}
 							display={this.menuItems}
 						/>
 					</div>
@@ -118,7 +122,7 @@ class App extends Component {
 export default connect((state, props) => {
 	return {
 		windowSize: state.app.windowSize,
-		graphType: state.app.graphType,
+		updatingBar: state.app.updatingBar,
 		data: state.app.data,
 		lineData: state.app.lineData
 	};

@@ -134,6 +134,7 @@ class Axes extends Component {
 			data,
 			type,
 			appState,
+			enableBtn,
 			toggleToolTip,
 			toggleToolTipOff
 		} = this.props;
@@ -149,6 +150,7 @@ class Axes extends Component {
 					yScale={yScale}
 					data={data}
 					{...appState}
+					enableBtn={enableBtn}
 					toggleToolTip={toggleToolTip}
 					toggleToolTipOff={toggleToolTipOff}
 					toolTipWidth={this.toolTipWidth}

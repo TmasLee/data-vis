@@ -13,6 +13,7 @@ const GraphContainer = ({
 	data,
 	lineData,
 	appState,
+	enableBtn,
 	toggleToolTip,
 	toggleToolTipOff
 }) => {
@@ -28,6 +29,7 @@ const GraphContainer = ({
 				data={type === 'BAR_GRAPH' ? data : lineData}
 				lineData={lineData}
 				appState={appState}
+				enableBtn={enableBtn}
 				toggleToolTip={toggleToolTip}
 				toggleToolTipOff={toggleToolTipOff}
 			/>

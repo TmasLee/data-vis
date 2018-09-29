@@ -1,16 +1,20 @@
 import React from 'react';
 
-const MenuBtn = ({ type, display }) => {
+const MenuBtn = ({ type, updatingBar, display }) => {
 	if (type === 'BAR_GRAPH') {
-		return (
-			<button
-				onClick={e => {
-					e.preventDefault();
-					display[0].func();
-				}}>
-				{display[0].name}
-			</button>
-		);
+		if (updatingBar) {
+			return 'Randomizing';
+		} else {
+			return (
+				<button
+					onClick={e => {
+						e.preventDefault();
+						display[0].func();
+					}}>
+					{display[0].name}
+				</button>
+			);
+		}
 	} else {
 		return (
 			<select

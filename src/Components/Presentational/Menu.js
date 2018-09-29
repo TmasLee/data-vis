@@ -1,10 +1,10 @@
 import React from 'react';
 import MenuBtn from './MenuBtn';
 
-const Menu = ({ type, display }) => {
+const Menu = ({ ...props }) => {
 	return (
 		<div>
-			<MenuBtn type={type} display={display} />
+			<MenuBtn {...props} />
 		</div>
 	);
 };

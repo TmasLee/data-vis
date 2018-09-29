@@ -3,8 +3,34 @@ let defaultState = {
 		windowWidth: window.innerWidth,
 		windowHeight: window.innerHeight
 	},
-	graphType: 'BAR_GRAPH',
-	data: [],
+	updatingBar: false,
+	data: [
+		{
+			name: 'The Ancient One',
+			power: 1,
+			color: 'hsl(200,90%,61%)'
+		},
+		{
+			name: 'Dr. Strange',
+			power: 1,
+			color: 'hsl(144,90%,61%)'
+		},
+		{
+			name: 'Me',
+			power: 1,
+			color: 'hsl(155,90%,61%)'
+		},
+		{
+			name: 'Dormammu',
+			power: 1,
+			color: 'hsl(222,90%,61%)'
+		},
+		{
+			name: 'Mordo',
+			power: 1,
+			color: 'hsl(334,90%,61%)'
+		}
+	],
 	lineData: []
 };
 
@@ -43,6 +69,16 @@ function app(state = defaultState, action) {
 			return {
 				...state,
 				lineData: action.data
+			};
+		case 'DISABLE_BUTTON':
+			return {
+				...state,
+				updatingBar: action.updatingBar
+			};
+		case 'ENABLE_BUTTON':
+			return {
+				...state,
+				updatingBar: action.updatingBar
 			};
 		default:
 			return state;

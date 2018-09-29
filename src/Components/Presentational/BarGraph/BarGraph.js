@@ -13,6 +13,7 @@ const BarGraph = ({
 	toolTipY,
 	visibility,
 	toolTipText,
+	enableBtn,
 	toggleToolTip,
 	toggleToolTipOff,
 	toolTipWidth
@@ -32,6 +33,7 @@ const BarGraph = ({
 						height={y - yScale(d.power) - margin}
 						color={d.color}
 						rawData={d.power}
+						enableBtn={enableBtn}
 						toggleToolTip={toggleToolTip}
 						toggleToolTipOff={toggleToolTipOff}
 					/>

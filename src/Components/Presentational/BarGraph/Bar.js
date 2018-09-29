@@ -3,8 +3,8 @@ import { select, easeLinear } from 'd3';
 import { transition as d3Transition } from 'd3-transition';
 
 class Bar extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.transition = d3Transition()
 			.duration(1000)
 			.ease(easeLinear);
@@ -28,8 +28,7 @@ class Bar extends Component {
 	}
 
 	updateBar = initialRender => {
-		const { y, height, color } = this.props;
-
+		const { y, height, enableBtn, color } = this.props;
 		if (initialRender) {
 			select(this.barRef)
 				.attr('y', y)
@@ -40,12 +39,11 @@ class Bar extends Component {
 				.transition(this.transition)
 				.attr('y', y)
 				.attr('height', height)
-				.attr('fill', color);
+				.attr('fill', color)
+				.on('end', function() {
+					enableBtn();
+				});
 		}
-	};
-
-	change = () => {
-		select(this.barRef).style('fill', 'orange');
 	};
 
 	render() {
