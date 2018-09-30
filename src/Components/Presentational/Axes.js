@@ -5,6 +5,7 @@ import { select } from 'd3-selection';
 
 import BarGraph from './BarGraph/BarGraph';
 import LineGraph from './LineGraph/LineGraph';
+import PieGraph from './PieChart/PieChart';
 
 class Axes extends Component {
 	constructor() {
@@ -26,20 +27,21 @@ class Axes extends Component {
 		this.drawYAxis();
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		if (this.props.type === 'BAR_GRAPH') {
+	componentDidUpdate(prevProps) {
+		const { x, y, type } = this.props;
+		if (type === 'BAR_GRAPH') {
 			this.drawBarXAxis();
 		}
-		if (this.props.type === 'LINE_GRAPH') {
+		if (type === 'LINE_GRAPH') {
 			this.drawLineXAxis();
 		}
 
 		//  Resizes graph on window resize
-		if (prevProps.x !== this.props.x || prevProps.y !== this.props.y) {
-			if (this.props.type === 'BAR_GRAPH') {
+		if (prevProps.x !== x || prevProps.y !== y) {
+			if (type === 'BAR_GRAPH') {
 				this.drawBarXAxis();
 			}
-			if (this.props.type === 'LINE_GRAPH') {
+			if (type === 'LINE_GRAPH') {
 				this.drawLineXAxis();
 			}
 			this.drawYAxis();
@@ -49,10 +51,10 @@ class Axes extends Component {
 	}
 
 	getBarXScale = () => {
-		const { data } = this.props;
+		const { data, x } = this.props;
 		this.xScale = scaleBand()
 			.domain(data.map(d => d.name))
-			.rangeRound([this.margin, this.props.x - this.rightMargin])
+			.rangeRound([this.margin, x - this.rightMargin])
 			.padding(0.1);
 		return this.xScale;
 	};
@@ -68,12 +70,12 @@ class Axes extends Component {
 	};
 
 	getLineXScale = () => {
-		const { data } = this.props;
+		const { data, x } = this.props;
 		const min = Math.min(...data.map(d => d.Wavelength));
 		const max = Math.max(...data.map(d => d.Wavelength));
 		this.xScale = scaleLinear()
 			.domain([min - 10, max * 1.03])
-			.rangeRound([this.margin, this.props.x - this.margin]);
+			.rangeRound([this.margin, x - this.margin]);
 		return this.xScale;
 	};
 
@@ -88,29 +90,31 @@ class Axes extends Component {
 	};
 
 	drawXAxisLabel = name => {
+		const { x, y } = this.props;
 		select(this.xLabel)
 			.attr('text-anchor', 'middle')
 			.attr(
 				'transform',
 				'translate(' +
-					(this.margin / 2 + (this.props.x - this.rightMargin) / 2) +
+					(this.margin / 2 + (x - this.rightMargin) / 2) +
 					',' +
-					(this.props.y - this.labelOffset) +
+					(y - this.labelOffset) +
 					')'
 			)
 			.text(name);
 	};
 
 	getYScale = () => {
-		const { type, data } = this.props;
+		const { type, data, y } = this.props;
 		const max = Math.max(...data.map(d => d.Intensity));
 		this.yScale = scaleLinear()
 			.domain(type === 'BAR_GRAPH' ? [0, 110] : [0, max * 1.1])
-			.rangeRound([this.props.y - this.margin, this.topMargin]);
+			.rangeRound([y - this.margin, this.topMargin]);
 		return this.yScale;
 	};
 
 	drawYAxis = () => {
+		const { type, y } = this.props;
 		select(this.yAxisRef)
 			.attr('transform', 'translate(' + this.margin + ',' + 0 + ')')
 			.call(axisLeft(this.getYScale()));
@@ -121,52 +125,22 @@ class Axes extends Component {
 				'translate(' +
 					(this.margin - 3 * this.labelOffset) +
 					',' +
-					(this.topMargin + (this.props.y - this.margin) / 2) +
+					(this.topMargin + (y - this.margin) / 2) +
 					')rotate(-90)'
 			)
-			.text(this.props.type === 'BAR_GRAPH' ? 'Power' : 'Intensity');
+			.text(type === 'BAR_GRAPH' ? 'Power' : 'Intensity');
 	};
 
 	render() {
-		const {
-			x,
-			y,
-			data,
-			type,
-			appState,
-			enableBtn,
-			toggleToolTip,
-			toggleToolTipOff
-		} = this.props;
+		const { x, y, data, type } = this.props;
 		const xScale =
 			type === 'BAR_GRAPH' ? this.getBarXScale() : this.getLineXScale();
 		const yScale = this.getYScale();
 		const graph =
 			type === 'BAR_GRAPH' ? (
-				<BarGraph
-					x={x}
-					y={y}
-					xScale={xScale}
-					yScale={yScale}
-					data={data}
-					{...appState}
-					enableBtn={enableBtn}
-					toggleToolTip={toggleToolTip}
-					toggleToolTipOff={toggleToolTipOff}
-					toolTipWidth={this.toolTipWidth}
-				/>
+				<BarGraph x={x} y={y} xScale={xScale} yScale={yScale} data={data} />
 			) : (
-				<LineGraph
-					x={x}
-					y={y}
-					xScale={xScale}
-					yScale={yScale}
-					data={data}
-					{...appState}
-					toggleToolTip={toggleToolTip}
-					toggleToolTipOff={toggleToolTipOff}
-					toolTipWidth={this.toolTipWidth}
-				/>
+				<LineGraph x={x} y={y} xScale={xScale} yScale={yScale} data={data} />
 			);
 		return (
 			<svg width={x} height={y}>

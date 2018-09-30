@@ -9,14 +9,15 @@ const BarGraph = ({
 	xScale,
 	yScale,
 	data,
+	toolTipWidth,
+
 	toolTipX,
 	toolTipY,
 	visibility,
 	toolTipText,
 	enableBtn,
 	toggleToolTip,
-	toggleToolTipOff,
-	toolTipWidth
+	toggleToolTipOff
 }) => {
 	const margin = 60;
 	const halfBarWidth = xScale.bandwidth() / 2;

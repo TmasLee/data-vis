@@ -3,7 +3,6 @@ let defaultState = {
 		windowWidth: window.innerWidth,
 		windowHeight: window.innerHeight
 	},
-	updatingBar: false,
 	data: [
 		{
 			name: 'The Ancient One',
@@ -69,16 +68,6 @@ function app(state = defaultState, action) {
 			return {
 				...state,
 				lineData: action.data
-			};
-		case 'DISABLE_BUTTON':
-			return {
-				...state,
-				updatingBar: action.updatingBar
-			};
-		case 'ENABLE_BUTTON':
-			return {
-				...state,
-				updatingBar: action.updatingBar
 			};
 		default:
 			return state;

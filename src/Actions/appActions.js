@@ -1,6 +1,6 @@
 let url = 'http://localhost:8000/data/';
 
-export function fetchData() {
+export const fetchData = () => {
 	return dispatch => {
 		fetch(`${url}`, { method: 'GET' })
 			.then(res => {
@@ -16,9 +16,9 @@ export function fetchData() {
 				console.error(err);
 			});
 	};
-}
+};
 
-export function fetchTrialData(chemical, trial) {
+export const fetchTrialData = (chemical, trial) => {
 	return dispatch => {
 		fetch(
 			chemical === 'Holmium'
@@ -42,9 +42,9 @@ export function fetchTrialData(chemical, trial) {
 				console.error(err);
 			});
 	};
-}
+};
 
-export function randomizeData() {
+export const randomizeData = () => {
 	return dispatch => {
 		return fetch(`${url}randomize`, { method: 'PUT' })
 			.then(res => {
@@ -56,9 +56,9 @@ export function randomizeData() {
 				console.error(err);
 			});
 	};
-}
+};
 
-export function randomizeAndFetch() {
+export const randomizeAndFetch = () => {
 	return dispatch => {
 		dispatch(randomizeData())
 			.then(res => {
@@ -68,9 +68,9 @@ export function randomizeAndFetch() {
 				console.error(err);
 			});
 	};
-}
+};
 
-export function resizeWindow() {
+export const resizeWindow = () => {
 	return {
 		type: 'RESIZE_WINDOW_DIMENSIONS',
 		windowSize: {
@@ -78,18 +78,4 @@ export function resizeWindow() {
 			windowHeight: window.innerHeight
 		}
 	};
-}
-
-export function disableBtn() {
-	return {
-		type: 'DISABLE_BUTTON',
-		updatingBar: true
-	};
-}
-
-export function enableBtn() {
-	return {
-		type: 'ENABLE_BUTTON',
-		updatingBar: false
-	};
-}
+};
