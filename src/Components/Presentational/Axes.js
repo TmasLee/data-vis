@@ -18,10 +18,11 @@ class Axes extends Component {
 	}
 
 	componentDidMount() {
-		const { type } = this.props;
+		const { type, fetchData, fetchTrialData } = this.props;
+		this.handleResize();
 		window.addEventListener('resize', this.handleResize);
-		this.props.fetchData();
-		this.props.fetchTrialData('Holmium', 1);
+		fetchData();
+		fetchTrialData('Holmium', 1);
 		if (type === 'BAR_GRAPH') {
 			this.drawBarXAxis();
 		} else {
@@ -145,8 +146,9 @@ class Axes extends Component {
 		const yScale = this.getYScale();
 		const graph =
 			type === 'BAR_GRAPH' ? (
-				<BarGraph xScale={xScale} yScale={yScale} {...this.props} /> // <LineGraph x={x} y={y} xScale={xScale} yScale={yScale} data={data} />
+				<BarGraph xScale={xScale} yScale={yScale} {...this.props} />
 			) : (
+				// <LineGraph x={x} y={y} xScale={xScale} yScale={yScale} data={data} />
 				<LineGraph xScale={xScale} yScale={yScale} {...this.props} />
 			);
 		return (

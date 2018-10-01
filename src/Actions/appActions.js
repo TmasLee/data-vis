@@ -45,11 +45,13 @@ export const randomizeAndFetch = () => {
 };
 
 export const resizeWindow = () => {
-	return {
-		type: 'RESIZE_WINDOW_DIMENSIONS',
-		windowSize: {
-			windowWidth: window.innerWidth,
-			windowHeight: window.innerHeight
-		}
+	return dispatch => {
+		dispatch({
+			type: 'RESIZE_WINDOW_DIMENSIONS',
+			windowSize: {
+				graphWidth: window.innerWidth * 0.95,
+				graphHeight: window.innerHeight * 0.85
+			}
+		});
 	};
 };

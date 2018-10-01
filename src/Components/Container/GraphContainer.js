@@ -6,11 +6,10 @@ import * as menuActions from '../../Actions/menuActions';
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		...state,
-		x: state.app.windowSize.graphWidth,
-		y: state.app.windowSize.graphHeight,
 		type: ownProps.type,
-		data: ownProps.type === 'BAR_GRAPH' ? state.app.data : state.app.lineData
+		data: ownProps.type === 'BAR_GRAPH' ? state.app.data : state.app.lineData,
+		x: state.app.windowSize.graphWidth,
+		y: state.app.windowSize.graphHeight
 	};
 };
 
@@ -27,9 +26,6 @@ const mapDispatchToProps = dispatch => ({
 	enableBtn: () => {
 		dispatch(menuActions.enableBtn());
 	}
-	// disableBtn: () => {
-	// 	dispatch(menuActions.disableBtn());
-	// }
 });
 
 export default connect(
