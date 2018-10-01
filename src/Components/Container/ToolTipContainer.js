@@ -7,16 +7,14 @@ const mapStateToProps = (state, ownProps) => ({
 	...ownProps
 });
 
-const mapDispatchToProps = dispatch => {
-	return {
-		toggleToolTipOn: (x, y, data) => {
-			dispatch(toolTipActions.toolTipOn(x, y, data));
-		},
-		toggleToolTipOff: () => {
-			dispatch(toolTipActions.toolTipOff());
-		}
-	};
-};
+const mapDispatchToProps = dispatch => ({
+	toggleToolTipOn: (x, y, data) => {
+		dispatch(toolTipActions.toolTipOn(x, y, data));
+	},
+	toggleToolTipOff: () => {
+		dispatch(toolTipActions.toolTipOff());
+	}
+});
 
 export default connect(
 	mapStateToProps,

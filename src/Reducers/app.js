@@ -1,7 +1,7 @@
 let defaultState = {
 	windowSize: {
-		windowWidth: window.innerWidth,
-		windowHeight: window.innerHeight
+		graphWidth: window.innerWidth * 0.95,
+		graphHeight: window.innerHeight * 0.85
 	},
 	data: [
 		{

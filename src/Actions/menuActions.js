@@ -1,13 +1,15 @@
+let url = 'http://localhost:8000/data/';
+
 export const disableBtn = () => {
 	return {
-		type: 'DISABLE_BUTTON',
+		type: 'BAR_UPDATING',
 		updatingBar: true
 	};
 };
 
 export const enableBtn = () => {
 	return {
-		type: 'ENABLE_BUTTON',
+		type: 'BAR_UPDATING_FINISHED',
 		updatingBar: false
 	};
 };

@@ -5,7 +5,7 @@ import { select } from 'd3-selection';
 
 import BarGraph from './BarGraph/BarGraph';
 import LineGraph from './LineGraph/LineGraph';
-import PieGraph from './PieChart/PieChart';
+// import PieGraph from './PieChart/PieChart';
 
 class Axes extends Component {
 	constructor() {
@@ -19,6 +19,9 @@ class Axes extends Component {
 
 	componentDidMount() {
 		const { type } = this.props;
+		window.addEventListener('resize', this.handleResize);
+		this.props.fetchData();
+		this.props.fetchTrialData('Holmium', 1);
 		if (type === 'BAR_GRAPH') {
 			this.drawBarXAxis();
 		} else {
@@ -49,6 +52,10 @@ class Axes extends Component {
 
 		this.drawYAxis();
 	}
+
+	handleResize = e => {
+		this.props.resizeWindow();
+	};
 
 	getBarXScale = () => {
 		const { data, x } = this.props;
@@ -132,15 +139,15 @@ class Axes extends Component {
 	};
 
 	render() {
-		const { x, y, data, type } = this.props;
+		const { x, y, type } = this.props;
 		const xScale =
 			type === 'BAR_GRAPH' ? this.getBarXScale() : this.getLineXScale();
 		const yScale = this.getYScale();
 		const graph =
 			type === 'BAR_GRAPH' ? (
-				<BarGraph x={x} y={y} xScale={xScale} yScale={yScale} data={data} />
+				<BarGraph xScale={xScale} yScale={yScale} {...this.props} /> // <LineGraph x={x} y={y} xScale={xScale} yScale={yScale} data={data} />
 			) : (
-				<LineGraph x={x} y={y} xScale={xScale} yScale={yScale} data={data} />
+				<LineGraph xScale={xScale} yScale={yScale} {...this.props} />
 			);
 		return (
 			<svg width={x} height={y}>

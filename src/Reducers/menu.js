@@ -4,12 +4,12 @@ let defaultState = {
 
 function menu(state = defaultState, action) {
 	switch (action.type) {
-		case 'DISABLE_BUTTON':
+		case 'BAR_UPDATING':
 			return {
 				...state,
 				updatingBar: action.updatingBar
 			};
-		case 'ENABLE_BUTTON':
+		case 'BAR_UPDATING_FINISHED':
 			return {
 				...state,
 				updatingBar: action.updatingBar
