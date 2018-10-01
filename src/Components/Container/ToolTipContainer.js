@@ -1,47 +1,24 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as toolTipActions from '../../Actions/toolTipActions';
 import Tooltip from '../Presentational/Tooltip';
 
-class ToolTipContainer extends Component {
-	constructor() {
-		super();
-		this.state = {
-			visibility: 'hidden',
-			toolTipX: 0,
-			toolTipY: 0,
-			toolTipText: '',
-			toolTipWidth: 119
-		};
-	}
+const mapStateToProps = (state, ownProps) => ({
+	...state,
+	...ownProps
+});
 
-	toggleToolTip = (x, y, data) => {
-		this.setState({
-			toolTipX: x,
-			toolTipY: y,
-			visibility: 'visible',
-			toolTipText: data
-		});
+const mapDispatchToProps = dispatch => {
+	return {
+		toggleToolTipOn: (x, y, data) => {
+			dispatch(toolTipActions.toolTipOn(x, y, data));
+		},
+		toggleToolTipOff: () => {
+			dispatch(toolTipActions.toolTipOff());
+		}
 	};
-
-	toggleToolTipOff = () => {
-		this.setState({ visibility: 'hidden' });
-	};
-
-	render() {
-		return (
-			<div>
-				<Tooltip />
-			</div>
-		);
-	}
-}
-
-const mapStateToProps = state => {
-	return {};
 };
 
-const mapDispatchToProps = state => {
-	return {};
-};
-
-export default connect()(ToolTipContainer);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Tooltip);

@@ -14,7 +14,7 @@ class Bar extends Component {
 		this.updateBar(true);
 	}
 
-	componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate(prevProps) {
 		if (
 			prevProps.height !== this.props.height ||
 			prevProps.y !== this.props.y
@@ -51,9 +51,9 @@ class Bar extends Component {
 			x,
 			y,
 			width,
-			rawData,
-			toggleToolTip,
-			toggleToolTipOff
+			rawData
+			// toggleToolTip,
+			// toggleToolTipOff
 		} = this.props;
 		return (
 			<rect

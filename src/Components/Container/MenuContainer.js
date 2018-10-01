@@ -21,7 +21,7 @@ class MenuContainer extends Component {
 
 	render() {
 		const { type } = this.props;
-		<MenuBtn type={type} updating={type} display={this.menuItems} />;
+		return <MenuBtn type={type} updating={type} display={this.menuItems} />;
 	}
 }
 

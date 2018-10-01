@@ -8,10 +8,11 @@ import * as appActions from '../../Actions/appActions';
  * This reads graph type to display from the URL.
  */
 class GraphContainer extends Component {
-	constructor() {
-		super();
-		this.graphWidth = windowWidth * 0.95;
-		this.graphHeight = windowHeight * 0.85;
+	constructor(props) {
+		super(props);
+		const { windowSize } = this.props;
+		this.graphWidth = windowSize.windowWidth * 0.95;
+		this.graphHeight = windowSize.windowHeight * 0.85;
 	}
 
 	componentDidMount() {
@@ -25,7 +26,7 @@ class GraphContainer extends Component {
 	};
 
 	render() {
-		const { type } = this.props;
+		const { type, data, lineData } = this.props;
 		return (
 			<Axes
 				type={type}
@@ -37,8 +38,6 @@ class GraphContainer extends Component {
 		);
 	}
 }
-
-// const mapStateToProps
 
 export default connect(state => {
 	return {
