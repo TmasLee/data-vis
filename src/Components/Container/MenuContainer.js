@@ -1,35 +1,12 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as menuActions from '../../Actions/menuActions';
 import MenuBtn from '../Presentational/MenuBtn';
 
-class MenuContainer extends Component {
-	constructor() {
-		super();
-		this.menuItems = [
-			{
-				name: 'Randomize Data!',
-				func: this.randomizeData
-			},
-			{
-				name: 'Select trial data',
-				func: this.selectTrial
-			}
-		];
-	}
-
-	render() {
-		const { type } = this.props;
-		return <MenuBtn type={type} updating={type} display={this.menuItems} />;
-	}
-}
-
-const mapStateToProps = state => {
-	return {
-		updatingBar: state.menu.updatingBar
-	};
-};
+const mapStateToProps = (state, ownProps) => ({
+	...state,
+	...ownProps
+});
 
 const mapDispatchToProps = dispatch => {
 	return {
@@ -46,4 +23,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(MenuContainer);
+)(MenuBtn);

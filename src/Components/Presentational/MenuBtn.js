@@ -1,6 +1,16 @@
 import React from 'react';
 
-const MenuBtn = ({ type, updatingBar, display }) => {
+const MenuBtn = ({ type, updatingBar, randomizeData, selectTrial }) => {
+	const display = [
+		{
+			name: 'Randomize Data!',
+			func: randomizeData
+		},
+		{
+			name: 'Select trial data',
+			func: selectTrial
+		}
+	];
 	if (type === 'BAR_GRAPH') {
 		if (updatingBar) {
 			return 'Randomizing';
