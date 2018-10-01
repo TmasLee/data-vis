@@ -47,7 +47,7 @@ class Bar extends Component {
 	};
 
 	render() {
-		const { x, width } = this.props;
+		const { x, y, rawData, width, toolTipOn, toolTipOff } = this.props;
 		return (
 			<rect
 				ref={ref => (this.barRef = ref)}
@@ -55,11 +55,11 @@ class Bar extends Component {
 				width={width}
 				onMouseOver={e => {
 					e.preventDefault();
-					// toggleToolTip(x, y, rawData);
+					toolTipOn(x, y, rawData);
 				}}
 				onMouseOut={e => {
 					e.preventDefault();
-					// toggleToolTipOff();
+					toolTipOff();
 				}}
 			/>
 		);

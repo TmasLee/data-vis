@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Axes from '../Presentational/Axes';
 import * as appActions from '../../Actions/appActions';
 import * as menuActions from '../../Actions/menuActions';
+import * as toolTipActions from '../../Actions/toolTipActions';
 
 const mapStateToProps = (state, ownProps) => {
 	return {
@@ -25,6 +26,12 @@ const mapDispatchToProps = dispatch => ({
 	},
 	enableBtn: () => {
 		dispatch(menuActions.enableBtn());
+	},
+	toolTipOn: (x, y, data) => {
+		dispatch(toolTipActions.toolTipOn(x, y, data));
+	},
+	toolTipOff: () => {
+		dispatch(toolTipActions.toolTipOff());
 	}
 });
 

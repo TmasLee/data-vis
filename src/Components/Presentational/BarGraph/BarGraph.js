@@ -3,7 +3,16 @@ import React from 'react';
 import Bar from './Bar';
 import ToolTipContainer from '../../Container/ToolTipContainer';
 
-const BarGraph = ({ x, y, xScale, yScale, data, enableBtn }) => {
+const BarGraph = ({
+	x,
+	y,
+	xScale,
+	yScale,
+	data,
+	enableBtn,
+	toolTipOn,
+	toolTipOff
+}) => {
 	const margin = 60;
 	return (
 		<svg width={x} height={y}>
@@ -18,6 +27,8 @@ const BarGraph = ({ x, y, xScale, yScale, data, enableBtn }) => {
 						color={d.color}
 						rawData={d.power}
 						enableBtn={enableBtn}
+						toolTipOn={toolTipOn}
+						toolTipOff={toolTipOff}
 					/>
 				))}
 				<ToolTipContainer xScale={xScale} yScale={yScale} />
