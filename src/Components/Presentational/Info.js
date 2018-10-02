@@ -22,13 +22,16 @@ const Info = ({ type }) => {
 			<div>
 				<p>
 					This graph is a plot of actual lab data that I collected in one of my
-					upper level chemistry lab college courses. Click the button to see the
-					raw collected data. <br />
+					upper level chemistry lab college courses.
 					<br />
-					This graph plots __ wavelength vs light intensity.
-					__Explain_what_lab_was_ about__. In this experiment, we tested 2
-					separate chemicals with multiple trials. You can choose between
-					Holmium and KMnO4 (otherwise known as potassium permanganate).
+					<br />
+					In this experiment, we studied Beer's Law, A = -log(I/I0) where A is
+					the absorbance of a solution, I is the light intensity, and I0 is the
+					initial intensity. This graph plots different wavelengths of light vs
+					the light intensity of the light exiting the solution. In this
+					experiment, we tested 2 separate chemicals with multiple trials. You
+					can choose between Holmium and KMnO4 (otherwise known as potassium
+					permanganate).
 				</p>
 				<br />
 			</div>
