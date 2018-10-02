@@ -10,9 +10,9 @@ class Tooltip extends Component {
 		this.heightOffSet = 10; //Height of triangle
 		this.halfTriangleWidth = 5;
 		this.verticalTextCenter = 27;
-		this.halfBarWidth = type === 'BAR_GRAPH' ? xScale.bandwidth() / 2 : 30.5;
+		this.halfBarWidth = type === 'BAR_GRAPH' ? xScale.bandwidth() / 2 : 0;
 		this.centerOffSet =
-			(type === 'BAR_GRAPH' ? xScale.bandwidth() - this.width : -55.5) / 2;
+			type === 'BAR_GRAPH' ? (xScale.bandwidth() - this.width) / 2 : -55.5;
 	}
 	componentDidMount() {
 		this.updatePosition();
