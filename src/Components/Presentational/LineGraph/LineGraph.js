@@ -3,7 +3,16 @@ import React from 'react';
 import DataPoint from './DataPoint';
 import ToolTipContainer from '../../Container/ToolTipContainer';
 
-const LineGraph = ({ x, y, xScale, yScale, data, toolTipOn, toolTipOff }) => {
+const LineGraph = ({
+	x,
+	y,
+	xScale,
+	yScale,
+	type,
+	data,
+	toolTipOn,
+	toolTipOff
+}) => {
 	return (
 		<svg width={x} height={y}>
 			<g>
@@ -17,7 +26,7 @@ const LineGraph = ({ x, y, xScale, yScale, data, toolTipOn, toolTipOff }) => {
 						toolTipOff={toolTipOff}
 					/>
 				))}
-				<ToolTipContainer xScale={xScale} yScale={yScale} />
+				<ToolTipContainer xScale={xScale} yScale={yScale} type={type} />
 			</g>
 		</svg>
 	);

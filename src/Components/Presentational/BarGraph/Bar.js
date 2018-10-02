@@ -3,8 +3,8 @@ import { select, easeLinear } from 'd3';
 import { transition as d3Transition } from 'd3-transition';
 
 class Bar extends Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 		this.transition = d3Transition()
 			.duration(1000)
 			.ease(easeLinear);

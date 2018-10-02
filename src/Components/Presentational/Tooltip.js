@@ -4,13 +4,15 @@ import { select } from 'd3';
 class Tooltip extends Component {
 	constructor(props) {
 		super(props);
+		const { xScale, type } = this.props;
 		this.height = 40;
 		this.width = 119;
 		this.heightOffSet = 10; //Height of triangle
 		this.halfTriangleWidth = 5;
 		this.verticalTextCenter = 27;
-		this.halfBarWidth = this.props.xScale.bandwidth() / 2;
-		this.centerOffSet = (this.props.xScale.bandwidth() - this.width) / 2;
+		this.halfBarWidth = type === 'BAR_GRAPH' ? xScale.bandwidth() / 2 : 30.5;
+		this.centerOffSet =
+			(type === 'BAR_GRAPH' ? xScale.bandwidth() - this.width : -55.5) / 2;
 	}
 	componentDidMount() {
 		this.updatePosition();
@@ -72,28 +74,24 @@ class Tooltip extends Component {
 			halfTriangleWidth,
 			heightOffSet
 		} = this;
-		if (!x || !y) {
-			return null;
-		} else {
-			return (
-				<g>
-					<rect
-						ref={ref => (this.toolTipRect = ref)}
-						width={width}
-						height={height}
-					/>
-					<text ref={ref => (this.toolTipText = ref)} />
-					<polygon
-						ref={ref => (this.toolTipTriangle = ref)}
-						points={`${x + halfBarWidth},${y} ${x +
-							halfBarWidth -
-							halfTriangleWidth},${y - heightOffSet} ${x +
-							halfBarWidth +
-							halfTriangleWidth},${y - heightOffSet}`}
-					/>
-				</g>
-			);
-		}
+		return (
+			<g>
+				<rect
+					ref={ref => (this.toolTipRect = ref)}
+					width={width}
+					height={height}
+				/>
+				<text ref={ref => (this.toolTipText = ref)} />
+				<polygon
+					ref={ref => (this.toolTipTriangle = ref)}
+					points={`${x + halfBarWidth},${y} ${x +
+						halfBarWidth -
+						halfTriangleWidth},${y - heightOffSet} ${x +
+						halfBarWidth +
+						halfTriangleWidth},${y - heightOffSet}`}
+				/>
+			</g>
+		);
 	}
 }
 

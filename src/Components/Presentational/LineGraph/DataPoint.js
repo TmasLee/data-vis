@@ -12,7 +12,7 @@ class DataPoint extends Component {
 		this.updatePosition();
 	}
 
-	componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate(prevProps) {
 		if (prevProps.x !== this.props.x || prevProps.y !== this.props.y) {
 			this.updatePosition();
 		}
@@ -40,7 +40,7 @@ class DataPoint extends Component {
 	};
 
 	render() {
-		const { x, y, data, toggleToolTip, toggleToolTipOff } = this.props;
+		const { x, y, data, toolTipOn, toolTipOff } = this.props;
 		return (
 			<circle
 				ref={ref => (this.pointRef = ref)}
@@ -49,12 +49,12 @@ class DataPoint extends Component {
 				onMouseOver={e => {
 					e.preventDefault();
 					this.onMouseOver();
-					toggleToolTip(x, y, data);
+					toolTipOn(x, y, data);
 				}}
 				onMouseOut={e => {
 					e.preventDefault();
 					this.onMouseOut();
-					toggleToolTipOff();
+					toolTipOff();
 				}}
 			/>
 		);

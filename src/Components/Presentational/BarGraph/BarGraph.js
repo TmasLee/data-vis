@@ -9,6 +9,7 @@ const BarGraph = ({
 	xScale,
 	yScale,
 	data,
+	type,
 	enableBtn,
 	toolTipOn,
 	toolTipOff
@@ -31,7 +32,7 @@ const BarGraph = ({
 						toolTipOff={toolTipOff}
 					/>
 				))}
-				<ToolTipContainer xScale={xScale} yScale={yScale} />
+				<ToolTipContainer xScale={xScale} yScale={yScale} type={type} />
 			</g>
 		</svg>
 	);

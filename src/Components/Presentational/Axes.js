@@ -19,7 +19,6 @@ class Axes extends Component {
 
 	componentDidMount() {
 		const { type, fetchData, fetchTrialData } = this.props;
-		this.handleResize();
 		window.addEventListener('resize', this.handleResize);
 		fetchData();
 		fetchTrialData('Holmium', 1);
