@@ -26,7 +26,7 @@ const MenuBtn = ({ type, updatingBar, randomizeData, selectTrial }) => {
 				</button>
 			);
 		}
-	} else {
+	} else if (type === 'LINE_GRAPH') {
 		return (
 			<select
 				onChange={e => {
@@ -50,6 +50,8 @@ const MenuBtn = ({ type, updatingBar, randomizeData, selectTrial }) => {
 				</option>
 			</select>
 		);
+	} else {
+		return <div />;
 	}
 };
 

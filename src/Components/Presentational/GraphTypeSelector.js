@@ -10,7 +10,7 @@ const GraphTypeSelector = () => (
 		{', '}
 		<Type type={GraphType.LINE_GRAPH}>Scatter</Type>
 		{', '}
-		Pie
+		<Type type={GraphType.PIE_CHART}>Donut</Type>
 	</div>
 );
 

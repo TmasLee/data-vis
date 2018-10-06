@@ -5,7 +5,7 @@ import { select } from 'd3-selection';
 
 import BarGraph from './BarGraph/BarGraph';
 import LineGraph from './LineGraph/LineGraph';
-// import PieGraph from './PieChart/PieChart';
+import PieGraph from './PieChart/PieChart';
 
 class Axes extends Component {
 	constructor() {
@@ -146,9 +146,10 @@ class Axes extends Component {
 		const graph =
 			type === 'BAR_GRAPH' ? (
 				<BarGraph xScale={xScale} yScale={yScale} {...this.props} />
-			) : (
-				// <LineGraph x={x} y={y} xScale={xScale} yScale={yScale} data={data} />
+			) : type === 'LINE_GRAPH' ? (
 				<LineGraph xScale={xScale} yScale={yScale} {...this.props} />
+			) : (
+				<PieGraph x={x} y={y} />
 			);
 		return (
 			<svg width={x} height={y}>
