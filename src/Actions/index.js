@@ -8,6 +8,6 @@ export const GraphType = {
 	BAR_GRAPH: 'BAR_GRAPH',
 	LINE_GRAPH: 'LINE_GRAPH',
 	ph_comparative: '',
-	PIE_CHART: 'PIE_CHART',
+	DONUT: 'DONUT',
 	ph_vr: ''
 };

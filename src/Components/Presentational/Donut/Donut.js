@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { pie, arc } from 'd3-shape';
-import { select, easeLinear } from 'd3';
+import { select, selectAll, easeLinear } from 'd3';
 import { transition as d3Transition } from 'd3-transition';
 
 import Center from './Center';
@@ -9,7 +9,7 @@ class PieChart extends Component {
 	constructor(props) {
 		super(props);
 		const { x, y } = this.props;
-		this.thickness = 40;
+		this.thickness = 160;
 		this.radius = x < y ? x / 2 : y / 2;
 	}
 
@@ -26,21 +26,23 @@ class PieChart extends Component {
 				return d.value;
 			})
 		);
+		let arcData = arc()
+			.outerRadius(this.radius)
+			.innerRadius(this.radius - this.thickness);
 		if (initialRender) {
-			select(this.pieRef)
-				.append('path')
-				.attr('transform', 'translate(' + x / 2 + ',' + y / 2 + ')')
-				.attr(
-					'd',
-					pieData.map(slice => {
-						return arc({
-							innerRadius: this.radius - this.thickness,
-							outerRadius: this.radius,
-							startAngle: slice.startAngle,
-							endAngle: slice.endAngle
-						});
-					})
-				);
+			let pieGraph = select(this.pieRef).attr(
+				'transform',
+				'translate(' + x / 2 + ',' + y / 2 + ')'
+			);
+			let g = pieGraph
+				.selectAll('.arc')
+				.data(pieData)
+				.enter()
+				.append('g')
+				.attr('class', 'arc');
+			g.append('path')
+				.attr('d', arcData)
+				.attr('fill', 'red');
 		} else {
 			console.log('asdad');
 		}

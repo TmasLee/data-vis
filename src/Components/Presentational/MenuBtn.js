@@ -13,7 +13,6 @@ const MenuBtn = ({ type, updatingBar, randomizeData, selectTrial }) => {
 	];
 	if (type === 'BAR_GRAPH') {
 		if (updatingBar) {
-			console.log('asdklajsdlkajsdl');
 			return 'Randomizing';
 		} else {
 			return (

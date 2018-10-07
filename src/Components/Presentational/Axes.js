@@ -5,7 +5,7 @@ import { select } from 'd3-selection';
 
 import BarGraph from './BarGraph/BarGraph';
 import LineGraph from './LineGraph/LineGraph';
-import PieGraph from './PieChart/PieChart';
+import Donut from './Donut/Donut';
 
 class Axes extends Component {
 	constructor() {
@@ -140,26 +140,32 @@ class Axes extends Component {
 
 	render() {
 		const { x, y, type } = this.props;
-		const xScale =
-			type === 'BAR_GRAPH' ? this.getBarXScale() : this.getLineXScale();
-		const yScale = this.getYScale();
-		const graph =
-			type === 'BAR_GRAPH' ? (
-				<BarGraph xScale={xScale} yScale={yScale} {...this.props} />
-			) : type === 'LINE_GRAPH' ? (
-				<LineGraph xScale={xScale} yScale={yScale} {...this.props} />
-			) : (
-				<PieGraph x={x} y={y} />
+		if (type === 'DONUT') {
+			return (
+				<svg width={x} height={y}>
+					<Donut x={x} y={y} />
+				</svg>
 			);
-		return (
-			<svg width={x} height={y}>
-				<g ref={ref => (this.xAxisRef = ref)} />
-				<g ref={ref => (this.yAxisRef = ref)} />
-				<text ref={ref => (this.xLabel = ref)} />
-				<text ref={ref => (this.yLabel = ref)} />
-				{graph}
-			</svg>
-		);
+		} else {
+			const xScale =
+				type === 'BAR_GRAPH' ? this.getBarXScale() : this.getLineXScale();
+			const yScale = this.getYScale();
+			const graph =
+				type === 'BAR_GRAPH' ? (
+					<BarGraph xScale={xScale} yScale={yScale} {...this.props} />
+				) : (
+					<LineGraph xScale={xScale} yScale={yScale} {...this.props} />
+				);
+			return (
+				<svg width={x} height={y}>
+					<g ref={ref => (this.xAxisRef = ref)} />
+					<g ref={ref => (this.yAxisRef = ref)} />
+					<text ref={ref => (this.xLabel = ref)} />
+					<text ref={ref => (this.yLabel = ref)} />
+					{graph}
+				</svg>
+			);
+		}
 	}
 }
 
