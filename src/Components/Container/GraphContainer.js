@@ -8,7 +8,12 @@ import * as toolTipActions from '../../Actions/toolTipActions';
 const mapStateToProps = (state, ownProps) => {
 	return {
 		type: ownProps.type,
-		data: ownProps.type === 'BAR_GRAPH' ? state.app.data : state.app.lineData,
+		data:
+			ownProps.type === 'BAR_GRAPH'
+				? state.app.data
+				: ownProps.type === 'LINE_GRAPH'
+					? state.app.lineData
+					: state.app.donutData,
 		x: state.app.windowSize.graphWidth,
 		y: state.app.windowSize.graphHeight
 	};
@@ -20,6 +25,9 @@ const mapDispatchToProps = dispatch => ({
 	},
 	fetchTrialData: (chemical, trialNum) => {
 		dispatch(menuActions.fetchTrialData(chemical, trialNum));
+	},
+	fetchDonutData: () => {
+		dispatch(appActions.fetchDonutData());
 	},
 	resizeWindow: () => {
 		dispatch(appActions.resizeWindow());

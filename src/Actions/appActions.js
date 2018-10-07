@@ -18,6 +18,24 @@ export const fetchData = () => {
 	};
 };
 
+export const fetchDonutData = () => {
+	return dispatch => {
+		fetch(`${url}donutData`, { method: 'GET' })
+			.then(res => {
+				return res.json();
+			})
+			.then(res => {
+				dispatch({
+					type: 'FETCH_DONUT_DATA',
+					data: res.data
+				});
+			})
+			.catch(err => {
+				console.error(err);
+			});
+	};
+};
+
 export const randomizeData = () => {
 	return dispatch => {
 		return fetch(`${url}randomize`, { method: 'PUT' })

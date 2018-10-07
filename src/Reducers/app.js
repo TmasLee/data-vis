@@ -30,7 +30,8 @@ let defaultState = {
 			color: 'hsl(334,90%,61%)'
 		}
 	],
-	lineData: []
+	lineData: [],
+	donutData: []
 };
 
 function app(state = defaultState, action) {
@@ -39,6 +40,11 @@ function app(state = defaultState, action) {
 			return {
 				...state,
 				data: action.data
+			};
+		case 'FETCH_DONUT_DATA':
+			return {
+				...state,
+				donutData: action.data
 			};
 		case 'RANDOMIZE_DATA':
 			return {

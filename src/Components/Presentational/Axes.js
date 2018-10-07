@@ -18,9 +18,10 @@ class Axes extends Component {
 	}
 
 	componentDidMount() {
-		const { type, fetchData, fetchTrialData } = this.props;
+		const { type, fetchData, fetchTrialData, fetchDonutData } = this.props;
 		window.addEventListener('resize', this.handleResize);
 		fetchData();
+		fetchDonutData();
 		fetchTrialData('Holmium', 1);
 		if (type === 'BAR_GRAPH') {
 			this.drawBarXAxis();
@@ -139,11 +140,11 @@ class Axes extends Component {
 	};
 
 	render() {
-		const { x, y, type } = this.props;
+		const { x, y, type, data } = this.props;
 		if (type === 'DONUT') {
 			return (
 				<svg width={x} height={y}>
-					<Donut x={x} y={y} />
+					<Donut x={x} y={y} data={data} />
 				</svg>
 			);
 		} else {
