@@ -6,16 +6,25 @@ import { transition as d3Transition } from 'd3-transition';
 
 import Center from './Center';
 
-// Get colors from data, add  to scaleOrdinal --> color changed based on data value
+// Get colors from data, add to scaleOrdinal
 // Transitions
+// Fill in info for donut
+// Center defaults to legend?
 class PieChart extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			centerData: []
+		};
 		const { x, y } = this.props;
 		this.thickness = 250;
 		this.radius = x < y ? x / 2 : y / 2;
 		this.innerRadius = this.radius - this.thickness;
 		this.centerPos = [x / 2, y / 2];
+	}
+
+	componentDidMount() {
+		this.updateArcs();
 	}
 
 	componentDidUpdate(prevProps) {
@@ -50,11 +59,11 @@ class PieChart extends Component {
 		g.append('path')
 			.attr('d', arcData)
 			.attr('fill', function(d) {
-				console.log(d.data);
 				return color(d.data);
 			})
-			.on('mouseover', function(d) {
+			.on('mouseover', d => {
 				console.log(d);
+				this.setState({ centerData: d });
 			});
 	};
 
@@ -63,7 +72,11 @@ class PieChart extends Component {
 		return (
 			<g>
 				<g ref={ref => (this.pieRef = ref)} />
-				<Center centerPos={centerPos} radius={innerRadius} data={'s'} />
+				<Center
+					centerPos={centerPos}
+					radius={innerRadius}
+					data={this.state.centerData}
+				/>
 			</g>
 		);
 	}
