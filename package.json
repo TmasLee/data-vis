@@ -5,14 +5,11 @@
 	"main": "public/index.html",
 	"scripts": {
 		"test": "jest --watch",
-		"storybook": "start-storybook -p 9001 -c .storybook",
 		"client": "webpack-dev-server",
 		"build-production": "webpack -p",
 		"backend": "set NODE_PATH=./lib && nodemon --exec babel-node lib/devServer.js",
 		"dev": "concurrently \"npm run client\" \"npm run backend\"",
-		"prod": "concurrently \"npm run build-production\" \"npm run start\"",
-		"predeploy": "npm run build-production",
-		"deploy": "gh-pages -d public"
+		"prod": "concurrently \"npm run build-production\" \"npm run start\""
 	},
 	"babel": {
 		"presets": [
@@ -21,7 +18,6 @@
 			"stage-2"
 		]
 	},
-	"homepage": "http://sendmebiscuits.github.io/data-vis",
 	"author": "Thomas Lee",
 	"license": "ISC",
 	"dependencies": {
@@ -46,7 +42,6 @@
 		"redux-thunk": "^2.3.0"
 	},
 	"devDependencies": {
-		"@storybook/react": "^3.4.10",
 		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.3",
 		"babel-loader": "^7.1.5",
@@ -54,7 +49,6 @@
 		"babel-preset-env": "^1.7.0",
 		"babel-preset-react": "^6.24.1",
 		"babel-preset-stage-2": "^6.24.1",
-		"gh-pages": "^2.0.0",
 		"html-loader": "^0.5.5",
 		"html-webpack-plugin": "^3.2.0",
 		"http-proxy-middleware": "^0.19.0",
