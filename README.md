@@ -1,4 +1,4 @@
-# Development Version Installation Instructions
+# Dev Version Installation
 
 1. Clone repository
 2. Cd into directory
