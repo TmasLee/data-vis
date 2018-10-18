@@ -10,38 +10,29 @@ html {
 }
 
 body {
-	background-color: orange;
+	background-color: rgb(119, 115, 115);
 
 	header {
 		font-size: 2rem;
 		color: $primaryColor;
 		text-align: center;
+		padding-top: 1rem;
 	}
-
-	// div {
-	// 	#root {
-	// 		display: block;
-	// 		margin: auto;
-	// 		height: 98vh;
-	// 		// flex-direction: column;
-	// 		// justify-content: space-between;
-	// 	}
-	// }
+	nav {
+		display: flex;
+		justify-content: center;
+	}
 	ul {
-		#menu {
-			display: flex;
-			flex-direction: row;
-			width: 35%;
-			justify-content: space-between;
-			align-items: center;
-		}
+		display: flex;
 	}
 	ul li {
-		flex-basis: 25%;
+		list-style-type: none;
+		flex-basis: auto;
+		padding: 0 1rem;
 	}
 }
 
 p {
-	color: aqua;
+	color: rgb(53, 45, 45);
 	margin: 3% 10%;
 }

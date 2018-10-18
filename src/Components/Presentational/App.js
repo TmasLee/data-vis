@@ -15,15 +15,17 @@ const App = ({ match }) => {
 	return (
 		<div>
 			<Info type={type} />
+			<nav>
+				<ul>
+					<li>
+						<GraphTypeSelector />
+					</li>
+					<li>
+						<MenuContainer type={type} />
+					</li>
+				</ul>
+			</nav>
 			<GraphContainer type={type} />
-			<ul id="menu">
-				<li>
-					<GraphTypeSelector />
-				</li>
-				<li>
-					<MenuContainer type={type} />
-				</li>
-			</ul>
 		</div>
 	);
 };
