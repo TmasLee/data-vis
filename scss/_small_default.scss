@@ -1,10 +1,8 @@
-/* Prevent adjustments of font size after orientation changes in IE and iOS */
 html {
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 }
 
-/* Apply a natural box layout model to all elements */
 * {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -13,12 +11,37 @@ html {
 
 body {
 	background-color: orange;
-}
 
-h1 {
-	color: $primaryColor;
+	header {
+		font-size: 2rem;
+		color: $primaryColor;
+		text-align: center;
+	}
+
+	// div {
+	// 	#root {
+	// 		display: block;
+	// 		margin: auto;
+	// 		height: 98vh;
+	// 		// flex-direction: column;
+	// 		// justify-content: space-between;
+	// 	}
+	// }
+	ul {
+		#menu {
+			display: flex;
+			flex-direction: row;
+			width: 35%;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+	ul li {
+		flex-basis: 25%;
+	}
 }
 
 p {
 	color: aqua;
+	margin: 3% 10%;
 }
