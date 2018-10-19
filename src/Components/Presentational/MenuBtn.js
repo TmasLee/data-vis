@@ -3,7 +3,7 @@ import React from 'react';
 const MenuBtn = ({ type, updatingBar, randomizeData, selectTrial }) => {
 	const display = [
 		{
-			name: 'Randomize Data!',
+			name: 'Randomize Data',
 			func: randomizeData
 		},
 		{
@@ -13,7 +13,7 @@ const MenuBtn = ({ type, updatingBar, randomizeData, selectTrial }) => {
 	];
 	if (type === 'BAR_GRAPH') {
 		if (updatingBar) {
-			return 'Randomizing';
+			return <button>Randomizing......</button>;
 		} else {
 			return (
 				<button

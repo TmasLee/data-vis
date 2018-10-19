@@ -4,4 +4,4 @@
 2. Cd into directory
 3. npm run dev
 
-![Demo](https://user-images.githubusercontent.com/12753095/47055288-b0fc1980-d184-11e8-8285-3bcf4577d0aa.gif)
+![Demo](https://user-images.githubusercontent.com/12753095/47191363-d61f9200-d314-11e8-834b-016a6a5de125.gif)
