@@ -37,7 +37,22 @@ const Info = ({ type }) => {
 			</div>
 		);
 	} else {
-		return <div>This is for pie.</div>;
+		return (
+			<div>
+				<p>
+					This is for pie. Still gotta find some real data to plot. This is just
+					placeholder data. Might just keep it though. Next visuals are going to
+					be implemented and designed using with a test driven approach using
+					Jest. Also gonna add real reusable presentational components (buttons,
+					axes, etc...). <br />
+					<br />
+					For the bar and scatter plot, I designed the reusability of the axes
+					in the wrong way. I made the axes component the parent when I wanted
+					to make the bar and scatter plot the parent components reusing the
+					same axes component 😅.
+				</p>
+			</div>
+		);
 	}
 };
 
