@@ -2,6 +2,7 @@
 /node_modules
 
 /public
-# /.storybook
-
 .env
+
+# python virtualenv
+/lib/devserver/.virtualenv
