@@ -14,7 +14,5 @@ api.add_resource(bar_api.BargraphApi, '/bargraph')
 if __name__ == '__main__':
     app.run()
 
-# Fix virtualenv + figure out how to use and what for
-# Better api for bargraph smfh
-# Fix get and then test if randomize works
+# Fix virtualenv
 # Hurry make proper api with data structure + tests
