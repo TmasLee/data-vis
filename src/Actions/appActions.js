@@ -3,13 +3,14 @@ let url = 'http://localhost:5000/';
 export const fetchData = () => {
 	return dispatch => {
 		fetch(`${url}bargraph`, { method: 'GET' })
+			.then(res => res.text())
 			.then(res => {
-				return res.json();
+				return JSON.parse(res);
 			})
 			.then(res => {
 				dispatch({
 					type: 'FETCH_DATA',
-					data: res.data
+					data: res
 				});
 			})
 			.catch(err => {

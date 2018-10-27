@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, make_response
 from flask_restful import Resource
 import random
 
@@ -33,7 +33,9 @@ class BargraphApi(Resource):
     ]
 
     def get(self):
-        return jsonify({'data': 'x'})
+        print(jsonify(self.dataset))
+        response = jsonify(self.dataset)
+        return make_response(response, 200)
 
     def put(self):
         for person in self.dataset:
