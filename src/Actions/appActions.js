@@ -1,8 +1,8 @@
-let url = 'http://localhost:8000/data/';
+let url = 'http://localhost:5000/';
 
 export const fetchData = () => {
 	return dispatch => {
-		fetch(`${url}`, { method: 'GET' })
+		fetch(`${url}bargraph`, { method: 'GET' })
 			.then(res => {
 				return res.json();
 			})
@@ -38,7 +38,7 @@ export const fetchDonutData = () => {
 
 export const randomizeData = () => {
 	return dispatch => {
-		return fetch(`${url}randomize`, { method: 'PUT' })
+		return fetch(`${url}bargraph`, { method: 'PUT' })
 			.then(res => {
 				dispatch({
 					type: 'RANDOMIZE_DATA'

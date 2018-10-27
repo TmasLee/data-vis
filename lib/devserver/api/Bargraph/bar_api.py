@@ -1,4 +1,4 @@
-from flask import Flask, make_response, request, jsonify
+from flask import Flask, jsonify
 from flask_restful import Resource
 import random
 
@@ -45,6 +45,7 @@ class BargraphApi(Resource):
                 self.calculateSimilarityAndColor(90, 100, person)
             else:
                 self.calculateSimilarityAndColor(10, 75, person)
+        return self.dataset
 
     def calculateSimilarityAndColor(self, min, max, person):
         degree = (person['power'] * 222) / 100
