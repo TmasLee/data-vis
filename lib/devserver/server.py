@@ -8,8 +8,6 @@ api = Api(app)
 parser = reqparse.RequestParser()
 
 api.add_resource(bar_api.BargraphApi, '/bargraph')
-# api.add_resource( , '/randomize')
-
 
 if __name__ == '__main__':
     app.run()
