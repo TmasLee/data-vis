@@ -33,7 +33,6 @@ class BargraphApi(Resource):
     ]
 
     def get(self):
-        print(jsonify(self.dataset))
         response = jsonify(self.dataset)
         return make_response(response, 200)
 
