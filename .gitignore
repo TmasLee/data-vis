@@ -1,9 +1,11 @@
 # dependencies
 /node_modules
+
 .vscode
 /public
 .env
-
+*.css.map
+styles.css
 # python virtualenv
 /lib/devserver/.virtualenv
 __pycache__
