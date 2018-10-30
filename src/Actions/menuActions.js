@@ -1,4 +1,4 @@
-let url = 'http://localhost:8000/data/';
+let url = 'http://localhost:5000/';
 
 export const disableBtn = () => {
 	return {
@@ -22,8 +22,9 @@ export const fetchTrialData = (chemical, trial) => {
 				: `${url}KMnO4Trial${trial}`,
 			{ method: 'GET' }
 		)
+			.then(res => res.text())
 			.then(res => {
-				return res.json();
+				return JSON.parse(res);
 			})
 			.then(res => {
 				dispatch({
@@ -31,7 +32,7 @@ export const fetchTrialData = (chemical, trial) => {
 						chemical === 'Holmium'
 							? `FETCH_HOLMIUM_${trial}`
 							: `FETCH_KMNO4_${trial}`,
-					data: res.data
+					data: res
 				});
 			})
 			.catch(err => {

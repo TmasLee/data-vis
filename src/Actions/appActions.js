@@ -21,14 +21,14 @@ export const fetchData = () => {
 
 export const fetchDonutData = () => {
 	return dispatch => {
-		fetch(`${url}donutData`, { method: 'GET' })
+		fetch(`${url}donutchart`, { method: 'GET' })
 			.then(res => {
 				return res.json();
 			})
 			.then(res => {
 				dispatch({
 					type: 'FETCH_DONUT_DATA',
-					data: res.data
+					data: res
 				});
 			})
 			.catch(err => {
