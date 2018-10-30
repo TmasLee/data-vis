@@ -2,8 +2,6 @@ from flask_restful import Resource
 
 
 class DataApi(Resource, object):
-    __name__ = 'DataApi xD'
-
     def __init__(self, **kwargs):
         self._strategy = kwargs['strategy']
 

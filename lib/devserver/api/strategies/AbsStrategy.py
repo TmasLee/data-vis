@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod, abstractproperty
 
+# And also abstract get/put??
+
 
 class AbsStrategy(ABC):
     # def get(self):
