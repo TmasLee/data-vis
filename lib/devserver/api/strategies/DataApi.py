@@ -1,11 +1,11 @@
 from flask_restful import Resource
 
 
-class DataApi(Resource):
+class DataApi(Resource, object):
     __name__ = 'DataApi xD'
 
-    def __init__(self, strategy):
-        self._strategy = strategy
+    def __init__(self, **kwargs):
+        self._strategy = kwargs['strategy']
 
     def get(self):
         return self._strategy.get()

@@ -5,35 +5,34 @@ from ..strategies.AbsStrategy import AbsStrategy  # pylint: disable=E0402
 
 
 class BarStrategy(AbsStrategy):
-    @property
-    def dataset(self):
-        self._dataset = [
-            {
-                'name': 'The Ancient One',
-                'power': 85,
-                'color': 'hsl(200,90%,61%)'
-            },
-            {
-                'name': 'Dr. Strange',
-                'power': 60,
-                'color': 'hsl(144,90%,61%)'
-            },
-            {
-                'name': 'Me',
-                'power': 70,
-                'color': 'hsl(155,90%,61%)'
-            },
-            {
-                'name': 'Dormammu',
-                'power': 100,
-                'color': 'hsl(222,90%,61%)'
-            },
-            {
-                'name': 'Mordo',
-                'power': 10,
-                'color': 'hsl(334,90%,61%)'
-            }
-        ]
+
+    dataset = [
+        {
+            'name': 'The Ancient One',
+            'power': 85,
+            'color': 'hsl(200,90%,61%)'
+        },
+        {
+            'name': 'Dr. Strange',
+            'power': 60,
+            'color': 'hsl(144,90%,61%)'
+        },
+        {
+            'name': 'Me',
+            'power': 70,
+            'color': 'hsl(155,90%,61%)'
+        },
+        {
+            'name': 'Dormammu',
+            'power': 100,
+            'color': 'hsl(222,90%,61%)'
+        },
+        {
+            'name': 'Mordo',
+            'power': 10,
+            'color': 'hsl(334,90%,61%)'
+        }
+    ]
 
     def get(self):
         return self.getData()
@@ -42,11 +41,11 @@ class BarStrategy(AbsStrategy):
         return self.randomizeData()
 
     def getData(self):
-        response = jsonify(self._dataset)
+        response = jsonify(self.dataset)
         return make_response(response, 200)
 
     def randomizeData(self):
-        for person in self._dataset:
+        for person in self.dataset:
             if person['name'] == 'The Ancient One':
                 self.calculateSimilarityAndColor(80, 90, person)
             if person['name'] == 'Mordo':
@@ -55,7 +54,7 @@ class BarStrategy(AbsStrategy):
                 self.calculateSimilarityAndColor(90, 100, person)
             else:
                 self.calculateSimilarityAndColor(10, 75, person)
-        return self._dataset
+        return self.dataset
 
     def calculateSimilarityAndColor(self, min, max, person):
         degree = (person['power'] * 222) / 100
