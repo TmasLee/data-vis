@@ -2,6 +2,7 @@ from flask import Flask, make_response, request, render_template, jsonify
 from flask_restful import Resource, Api
 from flask_cors import CORS
 from api.Bargraph.BarStrategy import BarStrategy
+from api.Donut.DonutStrategy import DonutStrategy
 from api.Scatter.ScatterStrategy import ScatterStrategy
 from api.strategies.DataApi import DataApi
 import json
@@ -33,6 +34,8 @@ api.add_resource(DataApi, '/KMnO4_Trial2', endpoint='/KMnO4_Trial2',
                  resource_class_kwargs={'strategy': ScatterStrategy(KMnO4_Data2)})
 api.add_resource(DataApi, '/bargraph', endpoint='/bargraph',
                  resource_class_kwargs={'strategy': BarStrategy()})
+api.add_resource(DataApi, '/donutchart', endpoint='/donutchart',
+                 resource_class_kwargs={'strategy': DonutStrategy()})
 
 if __name__ == '__main__':
     app.run()

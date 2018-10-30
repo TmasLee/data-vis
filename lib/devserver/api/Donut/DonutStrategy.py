@@ -1,10 +1,11 @@
 from flask import Flask, jsonify, make_response
-from flask_restful import Resource
 import random
+from ..strategies.AbsStrategy import AbsStrategy  # pylint: disable=E0402
 
 
-class DonutApi(Resource):
-    dataset: [
+class DonutStrategy(AbsStrategy):
+
+    dataset = [
         {
             'name': '1',
             'value': 20,
@@ -28,8 +29,14 @@ class DonutApi(Resource):
     ]
 
     def get(self):
+        return self.getData()
+
+    def put(self):
+        return self.randomizeData()
+
+    def getData(self):
         response = jsonify(self.dataset)
         return make_response(response, 200)
 
-    def put(self):
+    def randomizeData(self):
         return self.dataset
