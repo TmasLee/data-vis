@@ -11,9 +11,6 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 api = Api(app)
 
-api.add_resource(DataApi, '/bargraph', endpoint='/bargraph',
-                 resource_class_kwargs={'strategy': BarStrategy()})
-
 script_dir = os.path.dirname(__file__)
 holmium1_path = os.path.join(script_dir, './api/Scatter/holmium_1.json')
 holmium2_path = os.path.join(script_dir, './api/Scatter/holmium_2.json')
@@ -34,6 +31,8 @@ api.add_resource(DataApi, '/KMnO4_Trial1', endpoint='/KMnO4_Trial1',
                  resource_class_kwargs={'strategy': ScatterStrategy(KMnO4_Data1)})
 api.add_resource(DataApi, '/KMnO4_Trial2', endpoint='/KMnO4_Trial2',
                  resource_class_kwargs={'strategy': ScatterStrategy(KMnO4_Data2)})
+api.add_resource(DataApi, '/bargraph', endpoint='/bargraph',
+                 resource_class_kwargs={'strategy': BarStrategy()})
 
 if __name__ == '__main__':
     app.run()
