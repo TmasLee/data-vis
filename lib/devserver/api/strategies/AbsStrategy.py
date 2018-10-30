@@ -1,39 +1,24 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABC, abstractmethod, abstractproperty
 
 
-class AbsStrategy(metaclass=ABCMeta):
-    dataset = [
-        {
-            'name': 'The Ancient One',
-            'power': 85,
-            'color': 'hsl(200,90%,61%)'
-        },
-        {
-            'name': 'Dr. Strange',
-            'power': 60,
-            'color': 'hsl(144,90%,61%)'
-        },
-        {
-            'name': 'Me',
-            'power': 70,
-            'color': 'hsl(155,90%,61%)'
-        },
-        {
-            'name': 'Dormammu',
-            'power': 100,
-            'color': 'hsl(222,90%,61%)'
-        },
-        {
-            'name': 'Mordo',
-            'power': 10,
-            'color': 'hsl(334,90%,61%)'
-        }
-    ]
+class AbsStrategy(ABC):
+    # def __init__(self):
+    #     super().__init__()
 
-    @abstractmethod
-    def calculateSimilarity(self, max, min, person):
+    # def get(self):
+    #     return self.getData()
+
+    # def put(self):
+    #     return self.randomizeData()
+
+    @abstractproperty
+    def dataset(self):
         pass
 
     @abstractmethod
-    def calculateColor(self, person):
+    def getData(self):
+        pass
+
+    @abstractmethod
+    def randomizeData(self):
         pass
