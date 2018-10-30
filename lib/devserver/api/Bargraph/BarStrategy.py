@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, make_response
 from flask_restful import Resource
 import random
-from ..strategies.AbsStrategy import AbsStrategy
+from ..strategies.AbsStrategy import AbsStrategy  # pylint: disable=E0402
 
 
 class BarStrategy(AbsStrategy):
