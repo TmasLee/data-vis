@@ -16,7 +16,10 @@ const mapDispatchToProps = dispatch => ({
 		dispatch(randomizeAndFetch());
 	},
 	selectTrial: (chemical, trialNum) =>
-		dispatch(menuActions.fetchTrialData(chemical, trialNum))
+		dispatch(menuActions.fetchTrialData(chemical, trialNum)),
+	shuffleAndRandomize: () => {
+		console.log('xD');
+	}
 });
 
 export default connect(

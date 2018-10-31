@@ -7,12 +7,12 @@ import { transition as d3Transition } from 'd3-transition';
 import Center from './Center';
 
 // Transitions
-// Center defaults to legend?
 class PieChart extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			centerData: []
+			centerData: [],
+			centerColor: 'cyan'
 		};
 		const { x, y } = this.props;
 		this.thickness = 250;
@@ -61,24 +61,27 @@ class PieChart extends Component {
 			.attr('class', 'arc');
 		g.append('path')
 			.attr('d', arcData)
-			.attr('fill', function(d) {
+			.attr('fill', d => {
 				return color(d.data);
 			})
 			.on('mouseover', d => {
-				console.log(arcData);
+				let sliceColor = color(d.data);
+				this.setState({ centerColor: sliceColor });
 				this.setState({ centerData: d });
 			});
 	};
 
 	render() {
 		const { centerPos, innerRadius } = this;
+		const { centerColor, centerData } = this.state;
 		return (
 			<g>
 				<g ref={ref => (this.pieRef = ref)} />
 				<Center
 					centerPos={centerPos}
 					radius={innerRadius}
-					data={this.state.centerData}
+					data={centerData}
+					color={centerColor}
 				/>
 			</g>
 		);

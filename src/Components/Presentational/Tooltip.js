@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { select } from 'd3';
 
+import { GraphType } from '../../Actions';
+
 class Tooltip extends Component {
 	constructor(props) {
 		super(props);
@@ -10,9 +12,12 @@ class Tooltip extends Component {
 		this.heightOffSet = 10; //Height of triangle
 		this.halfTriangleWidth = 5;
 		this.verticalTextCenter = 27;
-		this.halfBarWidth = type === 'BAR_GRAPH' ? xScale.bandwidth() / 2 : 0;
+		this.halfBarWidth =
+			type === GraphType.BAR_GRAPH ? xScale.bandwidth() / 2 : 0;
 		this.centerOffSet =
-			type === 'BAR_GRAPH' ? (xScale.bandwidth() - this.width) / 2 : -55.5;
+			type === GraphType.BAR_GRAPH
+				? (xScale.bandwidth() - this.width) / 2
+				: -55.5;
 	}
 	componentDidMount() {
 		this.updatePosition();

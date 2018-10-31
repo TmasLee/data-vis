@@ -8,9 +8,9 @@ const GraphTypeSelector = () => (
 		Display:
 		<Type type={GraphType.BAR_GRAPH}>Bar</Type>
 		{', '}
-		<Type type={GraphType.LINE_GRAPH}>Scatter</Type>
+		<Type type={GraphType.SCATTER_PLOT}>Scatter</Type>
 		{', '}
-		<Type type={GraphType.DONUT}>Donut</Type>
+		<Type type={GraphType.DONUT_CHART}>Donut</Type>
 	</div>
 );
 

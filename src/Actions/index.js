@@ -6,8 +6,8 @@ export const VisibilityFilters = {
 
 export const GraphType = {
 	BAR_GRAPH: 'BAR_GRAPH',
-	LINE_GRAPH: 'LINE_GRAPH',
+	SCATTER_PLOT: 'SCATTER_PLOT',
 	ph_comparative: '',
-	DONUT: 'DONUT',
+	DONUT_CHART: 'DONUT_CHART',
 	ph_vr: ''
 };

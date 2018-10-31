@@ -4,14 +4,14 @@ import Info from './Info';
 import GraphTypeSelector from './GraphTypeSelector';
 import GraphContainer from '../Container/GraphContainer';
 import MenuContainer from '../Container/MenuContainer';
+import { GraphType } from '../../Actions';
 
 /**
- * To Add:
- * -	Zoomable y axis? Scatter scalable x?
+ * -	Zoomable y axis?
  */
 
 const App = ({ match }) => {
-	const type = match.params.type || 'BAR_GRAPH';
+	const type = match.params.type || GraphType.BAR_GRAPH;
 	return (
 		<div>
 			<Info type={type} />

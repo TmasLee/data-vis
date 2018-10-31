@@ -3,7 +3,7 @@ import React from 'react';
 import DataPoint from './DataPoint';
 import ToolTipContainer from '../../Container/ToolTipContainer';
 
-const LineGraph = ({
+const ScatterPlot = ({
 	x,
 	y,
 	xScale,
@@ -32,4 +32,4 @@ const LineGraph = ({
 	);
 };
 
-export default LineGraph;
+export default ScatterPlot;

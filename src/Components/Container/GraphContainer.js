@@ -4,15 +4,17 @@ import Axes from '../Presentational/Axes';
 import * as appActions from '../../Actions/appActions';
 import * as menuActions from '../../Actions/menuActions';
 import * as toolTipActions from '../../Actions/toolTipActions';
+import { GraphType } from '../../Actions';
 
 const mapStateToProps = (state, ownProps) => {
+	const { BAR_GRAPH, SCATTER_PLOT, DONUT_CHART } = GraphType;
 	return {
 		type: ownProps.type,
 		data:
-			ownProps.type === 'BAR_GRAPH'
+			ownProps.type === BAR_GRAPH
 				? state.app.data
-				: ownProps.type === 'LINE_GRAPH'
-					? state.app.lineData
+				: ownProps.type === SCATTER_PLOT
+					? state.app.scatterData
 					: state.app.donutData,
 		x: state.app.windowSize.graphWidth,
 		y: state.app.windowSize.graphHeight

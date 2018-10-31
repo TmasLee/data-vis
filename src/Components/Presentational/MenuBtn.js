@@ -1,6 +1,16 @@
 import React from 'react';
 
-const MenuBtn = ({ type, updatingBar, randomizeData, selectTrial }) => {
+import { GraphType } from '../../Actions';
+
+// Make into reusable component. Use children.
+const MenuBtn = ({
+	type,
+	updatingBar,
+	randomizeData,
+	selectTrial,
+	shuffleAndRandomize
+}) => {
+	const { BAR_GRAPH, SCATTER_PLOT, DONUT_CHART } = GraphType;
 	const display = [
 		{
 			name: 'Randomize Data',
@@ -9,9 +19,13 @@ const MenuBtn = ({ type, updatingBar, randomizeData, selectTrial }) => {
 		{
 			name: 'Select trial data',
 			func: selectTrial
+		},
+		{
+			name: 'Shuffle and randomize data',
+			func: shuffleAndRandomize
 		}
 	];
-	if (type === 'BAR_GRAPH') {
+	if (type === BAR_GRAPH) {
 		if (updatingBar) {
 			return <button>Randomizing......</button>;
 		} else {
@@ -25,7 +39,7 @@ const MenuBtn = ({ type, updatingBar, randomizeData, selectTrial }) => {
 				</button>
 			);
 		}
-	} else if (type === 'LINE_GRAPH') {
+	} else if (type === SCATTER_PLOT) {
 		return (
 			<select
 				onChange={e => {
@@ -48,6 +62,16 @@ const MenuBtn = ({ type, updatingBar, randomizeData, selectTrial }) => {
 					KMnO4 Trial 2
 				</option>
 			</select>
+		);
+	} else if (type === DONUT_CHART) {
+		return (
+			<button
+				onClick={e => {
+					e.preventDefault();
+					display[2].func();
+				}}>
+				{display[2].name}
+			</button>
 		);
 	} else {
 		return <div />;

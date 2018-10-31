@@ -1,7 +1,9 @@
 import React from 'react';
+import { GraphType } from '../../Actions';
 
 const Info = ({ type }) => {
-	if (type === 'BAR_GRAPH') {
+	const { BAR_GRAPH, SCATTER_PLOT, DONUT_CHART } = GraphType;
+	if (type === BAR_GRAPH) {
 		return (
 			<div>
 				<p>
@@ -17,7 +19,7 @@ const Info = ({ type }) => {
 				</p>
 			</div>
 		);
-	} else if (type === 'LINE_GRAPH') {
+	} else if (type === SCATTER_PLOT) {
 		return (
 			<div>
 				<p>
@@ -36,15 +38,14 @@ const Info = ({ type }) => {
 				<br />
 			</div>
 		);
-	} else {
+	} else if (type === DONUT_CHART) {
 		return (
 			<div>
 				<p>
-					This is for pie. Still gotta find some real data to plot. This is just
-					placeholder data. Might just keep it though. Next visuals are going to
-					be implemented and designed using with a test driven approach using
-					Jest. Also gonna add real reusable presentational components (buttons,
-					axes, etc...). <br />
+					This is just random "data" presented as a Donut Chart. Next visuals
+					are going to be implemented and designed using with a test driven
+					approach using Jest. Also gonna add real reusable presentational
+					components (buttons, axes, etc...). <br />
 					<br />
 					For the bar and scatter plot, I designed the reusability of the axes
 					in the wrong way. I made the axes component the parent when I wanted
@@ -53,6 +54,8 @@ const Info = ({ type }) => {
 				</p>
 			</div>
 		);
+	} else {
+		return;
 	}
 };
 

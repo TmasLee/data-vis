@@ -3,8 +3,9 @@ import { axisLeft, axisBottom } from 'd3-axis';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
 
+import { GraphType } from '../../Actions';
 import BarGraph from './BarGraph/BarGraph';
-import LineGraph from './LineGraph/LineGraph';
+import ScatterPlot from './ScatterPlot/ScatterPlot';
 import Donut from './Donut/Donut';
 
 class Axes extends Component {
@@ -23,30 +24,31 @@ class Axes extends Component {
 		fetchData();
 		fetchDonutData();
 		fetchTrialData('Holmium', 1);
-		if (type === 'BAR_GRAPH') {
+		if (type === GraphType.BAR_GRAPH) {
 			this.drawBarXAxis();
 		} else {
-			this.drawLineXAxis();
+			this.drawScatterXAxis();
 		}
 		this.drawYAxis();
 	}
 
 	componentDidUpdate(prevProps) {
 		const { x, y, type } = this.props;
-		if (type === 'BAR_GRAPH') {
+		const { BAR_GRAPH, SCATTER_PLOT, DONUT_CHART } = GraphType;
+		if (type === BAR_GRAPH) {
 			this.drawBarXAxis();
 		}
-		if (type === 'LINE_GRAPH') {
-			this.drawLineXAxis();
+		if (type === SCATTER_PLOT) {
+			this.drawScatterXAxis();
 		}
 
 		//  Resizes graph on window resize
 		if (prevProps.x !== x || prevProps.y !== y) {
-			if (type === 'BAR_GRAPH') {
+			if (type === BAR_GRAPH) {
 				this.drawBarXAxis();
 			}
-			if (type === 'LINE_GRAPH') {
-				this.drawLineXAxis();
+			if (type === SCATTER_PLOT) {
+				this.drawScatterXAxis();
 			}
 			this.drawYAxis();
 		}
@@ -77,7 +79,7 @@ class Axes extends Component {
 		this.drawXAxisLabel('People');
 	};
 
-	getLineXScale = () => {
+	getScatterXScale = () => {
 		const { data, x } = this.props;
 		const min = Math.min(...data.map(d => d.Wavelength));
 		const max = Math.max(...data.map(d => d.Wavelength));
@@ -87,13 +89,13 @@ class Axes extends Component {
 		return this.xScale;
 	};
 
-	drawLineXAxis = () => {
+	drawScatterXAxis = () => {
 		select(this.xAxisRef)
 			.attr(
 				'transform',
 				'translate(' + 0 + ',' + (this.props.y - this.margin) + ')'
 			)
-			.call(axisBottom(this.getLineXScale()));
+			.call(axisBottom(this.getScatterXScale()));
 		this.drawXAxisLabel('Wavelength');
 	};
 
@@ -116,7 +118,7 @@ class Axes extends Component {
 		const { type, data, y } = this.props;
 		const max = Math.max(...data.map(d => d.Intensity));
 		this.yScale = scaleLinear()
-			.domain(type === 'BAR_GRAPH' ? [0, 110] : [0, max * 1.1])
+			.domain(type === GraphType.BAR_GRAPH ? [0, 110] : [0, max * 1.1])
 			.rangeRound([y - this.margin, this.topMargin]);
 		return this.yScale;
 	};
@@ -136,12 +138,14 @@ class Axes extends Component {
 					(this.topMargin + (y - this.margin) / 2) +
 					')rotate(-90)'
 			)
-			.text(type === 'BAR_GRAPH' ? 'Power' : 'Intensity');
+			.text(type === GraphType.BAR_GRAPH ? 'Power' : 'Intensity');
 	};
 
 	render() {
 		const { x, y, type, data } = this.props;
-		if (type === 'DONUT') {
+		const { DONUT_CHART, SCATTER_PLOT, BAR_GRAPH } = GraphType;
+
+		if (type === DONUT_CHART) {
 			return (
 				<svg width={x} height={y}>
 					<Donut x={x} y={y} data={data} />
@@ -149,13 +153,13 @@ class Axes extends Component {
 			);
 		} else {
 			const xScale =
-				type === 'BAR_GRAPH' ? this.getBarXScale() : this.getLineXScale();
+				type === BAR_GRAPH ? this.getBarXScale() : this.getScatterXScale();
 			const yScale = this.getYScale();
 			const graph =
-				type === 'BAR_GRAPH' ? (
+				type === BAR_GRAPH ? (
 					<BarGraph xScale={xScale} yScale={yScale} {...this.props} />
 				) : (
-					<LineGraph xScale={xScale} yScale={yScale} {...this.props} />
+					<ScatterPlot xScale={xScale} yScale={yScale} {...this.props} />
 				);
 			return (
 				<svg width={x} height={y}>

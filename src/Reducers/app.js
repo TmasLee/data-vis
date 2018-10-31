@@ -30,7 +30,7 @@ let defaultState = {
 			color: 'hsl(334,90%,61%)'
 		}
 	],
-	lineData: [],
+	scatterData: [],
 	donutData: []
 };
 
@@ -58,22 +58,23 @@ function app(state = defaultState, action) {
 		case 'FETCH_HOLMIUM_1':
 			return {
 				...state,
-				lineData: action.data
+				scatterData: action.data
 			};
 		case 'FETCH_HOLMIUM_2':
 			return {
 				...state,
-				lineData: action.data
+				scatterData: action.data
 			};
+			scatterData;
 		case 'FETCH_KMNO4_1':
 			return {
 				...state,
-				lineData: action.data
+				scatterData: action.data
 			};
 		case 'FETCH_KMNO4_2':
 			return {
 				...state,
-				lineData: action.data
+				scatterData: action.data
 			};
 		default:
 			return state;

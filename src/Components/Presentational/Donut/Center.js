@@ -1,12 +1,18 @@
 import React from 'react';
-import { select, easeLinear } from 'd3';
-import { transition as d3Transition } from 'd3-transition';
 
-const Center = ({ centerPos, radius, data }) => {
+const Center = ({ centerPos, radius, data, color }) => {
 	return (
 		<g>
-			<circle r={radius} cx={centerPos[0]} cy={centerPos[1]} fill={'cyan'} />
-			<text textAnchor="middle" x={centerPos[0]} y={centerPos[1]}>
+			<circle
+				r={radius}
+				cx={centerPos[0]}
+				cy={centerPos[1]}
+				fill={color}
+				stroke="black"
+				strokeWidth="1"
+			/>
+			<text textAnchor="middle" x={centerPos[0]} y={centerPos[1] + 6}>
+				Value:
 				{data.value}
 			</text>
 		</g>

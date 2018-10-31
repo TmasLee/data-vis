@@ -7,7 +7,6 @@
 		"test": "jest --watch",
 		"client": "webpack-dev-server",
 		"build-production": "webpack -p",
-		"backend": "set NODE_PATH=./lib && nodemon --exec babel-node lib/devServer.js",
 		"dev": "npm run client",
 		"prod": "concurrently \"npm run build-production\" \"npm run start\""
 	},
