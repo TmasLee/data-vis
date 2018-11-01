@@ -19,10 +19,10 @@ class Axes extends Component {
 	}
 
 	componentDidMount() {
-		const { type, fetchData, fetchTrialData, fetchDonutData } = this.props;
+		const { type, fetchData, fetchTrialData } = this.props;
 		window.addEventListener('resize', this.handleResize);
-		fetchData();
-		fetchDonutData();
+		fetchData(GraphType.BAR_GRAPH);
+		fetchData(GraphType.DONUT_CHART);
 		fetchTrialData('Holmium', 1);
 		if (type === GraphType.BAR_GRAPH) {
 			this.drawBarXAxis();

@@ -1,15 +1,15 @@
 let url = 'http://localhost:5000/';
 
-export const fetchData = () => {
+export const fetchData = type => {
 	return dispatch => {
-		fetch(`${url}bargraph`, { method: 'GET' })
+		fetch(`${url}${type}`, { method: 'GET' })
 			.then(res => res.text())
 			.then(res => {
 				return JSON.parse(res);
 			})
 			.then(res => {
 				dispatch({
-					type: 'FETCH_DATA',
+					type: `FETCH_DATA_${type}`,
 					data: res
 				});
 			})
@@ -19,27 +19,9 @@ export const fetchData = () => {
 	};
 };
 
-export const fetchDonutData = () => {
+export const randomizeData = type => {
 	return dispatch => {
-		fetch(`${url}donutchart`, { method: 'GET' })
-			.then(res => {
-				return res.json();
-			})
-			.then(res => {
-				dispatch({
-					type: 'FETCH_DONUT_DATA',
-					data: res
-				});
-			})
-			.catch(err => {
-				console.error(err);
-			});
-	};
-};
-
-export const randomizeData = () => {
-	return dispatch => {
-		return fetch(`${url}bargraph`, { method: 'PUT' })
+		return fetch(`${url}${type}`, { method: 'PUT' })
 			.then(res => {
 				dispatch({
 					type: 'RANDOMIZE_DATA'
@@ -51,11 +33,11 @@ export const randomizeData = () => {
 	};
 };
 
-export const randomizeAndFetch = () => {
+export const randomizeAndFetch = type => {
 	return dispatch => {
-		dispatch(randomizeData())
+		dispatch(randomizeData(type))
 			.then(res => {
-				dispatch(fetchData());
+				dispatch(fetchData(type));
 			})
 			.catch(err => {
 				console.error(err);

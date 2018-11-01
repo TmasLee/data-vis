@@ -1,16 +1,16 @@
 let url = 'http://localhost:5000/';
 
-export const disableBtn = () => {
+export const disableBtn = type => {
 	return {
-		type: 'BAR_UPDATING',
-		updatingBar: true
+		type: `${type}_UPDATING`,
+		updatingData: true
 	};
 };
 
 export const enableBtn = () => {
 	return {
-		type: 'BAR_UPDATING_FINISHED',
-		updatingBar: false
+		type: 'UPDATING_FINISHED',
+		updatingData: false
 	};
 };
 

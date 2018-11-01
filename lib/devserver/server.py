@@ -32,9 +32,9 @@ api.add_resource(DataApi, '/KMnO4Trial1', endpoint='/KMnO4Trial1',
                  resource_class_kwargs={'strategy': ScatterStrategy(KMnO4_Data1)})
 api.add_resource(DataApi, '/KMnO4Trial2', endpoint='/KMnO4Trial2',
                  resource_class_kwargs={'strategy': ScatterStrategy(KMnO4_Data2)})
-api.add_resource(DataApi, '/bargraph', endpoint='/bargraph',
+api.add_resource(DataApi, '/BAR_GRAPH', endpoint='/BAR_GRAPH',
                  resource_class_kwargs={'strategy': BarStrategy()})
-api.add_resource(DataApi, '/donutchart', endpoint='/donutchart',
+api.add_resource(DataApi, '/DONUT_CHART', endpoint='/DONUT_CHART',
                  resource_class_kwargs={'strategy': DonutStrategy()})
 
 if __name__ == '__main__':
