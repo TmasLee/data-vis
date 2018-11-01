@@ -6,7 +6,8 @@ import MenuBtn from '../Presentational/MenuBtn';
 
 const mapStateToProps = state => {
 	return {
-		updatingBar: state.menu.updatingBar
+		updatingBar: state.menu.updatingBar,
+		updatingSlice: state.menu.updatingSlice
 	};
 };
 

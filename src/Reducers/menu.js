@@ -1,5 +1,6 @@
 let defaultState = {
-	updatingBar: false
+	updatingBar: false,
+	updatingSlice: false
 };
 
 function menu(state = defaultState, action) {
@@ -13,6 +14,16 @@ function menu(state = defaultState, action) {
 			return {
 				...state,
 				updatingBar: action.updatingBar
+			};
+		case 'SLICE_UPDATING':
+			return {
+				...state,
+				updatingSlice: action.updatingSlice
+			};
+		case 'SLICE_UPDATING_FINISHED':
+			return {
+				...state,
+				updatingSlice: action.updatingSlice
 			};
 		default:
 			return state;

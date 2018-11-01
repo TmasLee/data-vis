@@ -6,10 +6,6 @@ import GraphContainer from '../Container/GraphContainer';
 import MenuContainer from '../Container/MenuContainer';
 import { GraphType } from '../../Actions';
 
-/**
- * -	Zoomable y axis?
- */
-
 const App = ({ match }) => {
 	const type = match.params.type || GraphType.BAR_GRAPH;
 	return (

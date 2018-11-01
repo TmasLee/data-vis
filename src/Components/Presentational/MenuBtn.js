@@ -1,11 +1,20 @@
 import React from 'react';
 
 import { GraphType } from '../../Actions';
+import Btn from './ReusableBtn';
 
-// Make into reusable component. Use children.
+const style = {
+	loading: {
+		border: 'none',
+		backgroundColor: 'transparent',
+		outline: 'none'
+	}
+};
+
 const MenuBtn = ({
 	type,
 	updatingBar,
+	updatingSlice,
 	randomizeData,
 	selectTrial,
 	shuffleAndRandomize
@@ -27,17 +36,9 @@ const MenuBtn = ({
 	];
 	if (type === BAR_GRAPH) {
 		if (updatingBar) {
-			return <button>Randomizing......</button>;
+			return <Btn style={style.loading}>Randomizing Bars</Btn>;
 		} else {
-			return (
-				<button
-					onClick={e => {
-						e.preventDefault();
-						display[0].func();
-					}}>
-					{display[0].name}
-				</button>
-			);
+			return <Btn onClick={display[0].func}>{display[0].name}</Btn>;
 		}
 	} else if (type === SCATTER_PLOT) {
 		return (
@@ -64,15 +65,10 @@ const MenuBtn = ({
 			</select>
 		);
 	} else if (type === DONUT_CHART) {
-		return (
-			<button
-				onClick={e => {
-					e.preventDefault();
-					display[2].func();
-				}}>
-				{display[2].name}
-			</button>
-		);
+		if (updatingSlice) {
+			return <Btn style={style.loading}>Randomizing Slices</Btn>;
+		}
+		return <Btn onClick={display[2].func}>{display[2].name}</Btn>;
 	} else {
 		return <div />;
 	}

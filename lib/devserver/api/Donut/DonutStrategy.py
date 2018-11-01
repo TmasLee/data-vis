@@ -39,4 +39,7 @@ class DonutStrategy(AbsStrategy):
         return make_response(response, 200)
 
     def randomizeData(self):
+        for slice in self.dataset:
+            slice['value'] = random.randint(0, 99)
+        random.shuffle(self.dataset)
         return self.dataset

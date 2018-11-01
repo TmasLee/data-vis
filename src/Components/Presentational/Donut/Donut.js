@@ -6,8 +6,8 @@ import { transition as d3Transition } from 'd3-transition';
 
 import Center from './Center';
 
-// Transitions
-class PieChart extends Component {
+// Recenter chart after rerender on window size change
+class DonutChart extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -88,4 +88,4 @@ class PieChart extends Component {
 	}
 }
 
-export default PieChart;
+export default DonutChart;
