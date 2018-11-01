@@ -36,12 +36,12 @@ let defaultState = {
 
 function app(state = defaultState, action) {
 	switch (action.type) {
-		case 'FETCH_DATA':
+		case 'FETCH_DATA_BAR_GRAPH':
 			return {
 				...state,
 				data: action.data
 			};
-		case 'FETCH_DONUT_DATA':
+		case 'FETCH_DATA_DONUT_CHART':
 			return {
 				...state,
 				donutData: action.data

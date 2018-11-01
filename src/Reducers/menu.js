@@ -1,29 +1,28 @@
 let defaultState = {
-	updatingBar: false,
-	updatingSlice: false
+	updatingData: false
 };
 
 function menu(state = defaultState, action) {
 	switch (action.type) {
-		case 'BAR_UPDATING':
+		case 'BAR_GRAPH_UPDATING':
 			return {
 				...state,
-				updatingBar: action.updatingBar
+				updatingData: action.updatingData
 			};
-		case 'BAR_UPDATING_FINISHED':
+		case 'BAR_GRAPH_UPDATING_FINISHED':
 			return {
 				...state,
-				updatingBar: action.updatingBar
+				updatingData: action.updatingData
 			};
-		case 'SLICE_UPDATING':
+		case 'DONUT_CHART_UPDATING':
 			return {
 				...state,
-				updatingSlice: action.updatingSlice
+				updatingData: action.updatingData
 			};
-		case 'SLICE_UPDATING_FINISHED':
+		case 'DONUT_CHART_UPDATING_FINISHED':
 			return {
 				...state,
-				updatingSlice: action.updatingSlice
+				updatingData: action.updatingData
 			};
 		default:
 			return state;

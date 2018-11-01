@@ -13,8 +13,7 @@ const style = {
 
 const MenuBtn = ({
 	type,
-	updatingBar,
-	updatingSlice,
+	updatingData,
 	randomizeData,
 	selectTrial,
 	shuffleAndRandomize
@@ -35,7 +34,7 @@ const MenuBtn = ({
 		}
 	];
 	if (type === BAR_GRAPH) {
-		if (updatingBar) {
+		if (updatingData) {
 			return <Btn style={style.loading}>Randomizing Bars</Btn>;
 		} else {
 			return <Btn onClick={display[0].func}>{display[0].name}</Btn>;
@@ -65,7 +64,7 @@ const MenuBtn = ({
 			</select>
 		);
 	} else if (type === DONUT_CHART) {
-		if (updatingSlice) {
+		if (updatingData) {
 			return <Btn style={style.loading}>Randomizing Slices</Btn>;
 		}
 		return <Btn onClick={display[2].func}>{display[2].name}</Btn>;

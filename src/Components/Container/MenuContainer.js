@@ -6,15 +6,14 @@ import MenuBtn from '../Presentational/MenuBtn';
 
 const mapStateToProps = state => {
 	return {
-		updatingBar: state.menu.updatingBar,
-		updatingSlice: state.menu.updatingSlice
+		updatingData: state.menu.updatingData
 	};
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
 	randomizeData: () => {
-		dispatch(menuActions.disableBtn());
-		dispatch(randomizeAndFetch());
+		dispatch(menuActions.disableBtn(ownProps.type));
+		dispatch(randomizeAndFetch(ownProps.type));
 	},
 	selectTrial: (chemical, trialNum) =>
 		dispatch(menuActions.fetchTrialData(chemical, trialNum)),

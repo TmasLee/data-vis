@@ -22,14 +22,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-	fetchData: () => {
-		dispatch(appActions.fetchData());
+	fetchData: type => {
+		dispatch(appActions.fetchData(type));
 	},
 	fetchTrialData: (chemical, trialNum) => {
 		dispatch(menuActions.fetchTrialData(chemical, trialNum));
-	},
-	fetchDonutData: () => {
-		dispatch(appActions.fetchDonutData());
 	},
 	resizeWindow: () => {
 		dispatch(appActions.resizeWindow());
