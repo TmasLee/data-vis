@@ -143,19 +143,20 @@ class Axes extends Component {
 
 	render() {
 		const { x, y, type, data } = this.props;
-		const { DONUT_CHART, SCATTER_PLOT, BAR_GRAPH } = GraphType;
-
+		const { DONUT_CHART, BAR_GRAPH } = GraphType;
+		let graph;
 		if (type === DONUT_CHART) {
+			graph = <Donut x={x} y={y} data={data} />;
 			return (
 				<svg width={x} height={y}>
-					<Donut x={x} y={y} data={data} />
+					{graph}
 				</svg>
 			);
 		} else {
 			const xScale =
 				type === BAR_GRAPH ? this.getBarXScale() : this.getScatterXScale();
 			const yScale = this.getYScale();
-			const graph =
+			graph =
 				type === BAR_GRAPH ? (
 					<BarGraph xScale={xScale} yScale={yScale} {...this.props} />
 				) : (

@@ -6,7 +6,6 @@ import { transition as d3Transition } from 'd3-transition';
 
 import Center from './Center';
 
-// Recenter chart after rerender on window size change
 class DonutChart extends Component {
 	constructor(props) {
 		super(props);
@@ -15,8 +14,8 @@ class DonutChart extends Component {
 			centerColor: 'cyan'
 		};
 		const { x, y } = this.props;
-		this.thickness = 250;
-		this.radius = x < y ? x / 2.5 : y / 2.5;
+		this.radius = Math.min(x, y) / 2.5;
+		this.thickness = this.radius / 3;
 		this.innerRadius = this.radius - this.thickness;
 		this.centerPos = [x / 2, y / 2];
 	}
@@ -26,13 +25,21 @@ class DonutChart extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps.data !== this.props.data) {
+		const { x, y } = this.props;
+		this.radius = Math.min(x, y) / 2.5;
+		this.thickness = this.radius / 3;
+		this.innerRadius = this.radius - this.thickness;
+		this.centerPos = [x / 2, y / 2];
+		if (
+			prevProps.x !== this.props.x ||
+			prevProps.y !== this.props.y ||
+			prevProps.data !== this.props.data
+		) {
 			this.updateArcs();
 		}
 	}
 
 	updateArcs = () => {
-		const { data } = this.props;
 		const { radius, innerRadius, centerPos, pieRef } = this;
 		const color = scaleOrdinal().range([
 			'#2C93E8',
@@ -40,15 +47,14 @@ class DonutChart extends Component {
 			'#F56C4E',
 			'#74c16e'
 		]);
-
 		let pieData = pie()(
-			data.map(d => {
+			this.props.data.map(d => {
 				return d.value;
 			})
 		);
 		let arcData = arc()
-			.outerRadius(radius)
-			.innerRadius(innerRadius);
+			.innerRadius(innerRadius)
+			.outerRadius(radius);
 		let pieGraph = select(pieRef).attr(
 			'transform',
 			'translate(' + centerPos[0] + ',' + centerPos[1] + ')'
@@ -65,6 +71,7 @@ class DonutChart extends Component {
 				return color(d.data);
 			})
 			.on('mouseover', d => {
+				console.log(d);
 				let sliceColor = color(d.data);
 				this.setState({ centerColor: sliceColor });
 				this.setState({ centerData: d });
